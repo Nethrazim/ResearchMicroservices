@@ -1,0 +1,11 @@
+1.
+Install-Package Microsoft.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+
+2.
+Scaffold-DbContext "Server=DESKTOP-HTUAB81;Database=Institution;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Model -Force
+Scaffold-DbContext "Server=DESKTOP-HTUAB81;Database=Identity;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Model -Force
+
+3.
