@@ -1,0 +1,25 @@
+#create-account-component {
+  top: 50px;
+  width: fit-content;
+  border: 1px solid rgb(190, 190, 190);
+  padding:40px;
+  box-shadow: 0px 0px 5px  rgb(150, 150, 150);
+}
+
+#create-account-component a {
+  color: orange;
+  text-decoration: underline;
+}
+
+#create-account-component td {
+  padding: 0.5em;
+}
+
+#create-account-component .submit {
+  background-color:orange;
+}
+
+#create-account-component input {
+  outline-color: orange;
+
+}

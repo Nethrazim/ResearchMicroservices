@@ -1,0 +1,51 @@
+#login-comp {
+  width: fit-content;
+  border: 1px solid rgb(190, 190, 190);
+  padding:40px;
+  box-shadow: 0px 0px 5px  rgb(150, 150, 150);
+  top: 100px;  
+}
+
+#login-comp ul {
+  list-style: none;
+  padding-left:0px;
+}
+
+#login-comp li {
+  padding-bottom: 2em;
+}
+
+#login-comp input {
+  line-height: 2em;
+  width: 300px;
+  background-color: rgb(235, 235, 235);
+  border: 2px solid rgb(200, 200, 200);
+  outline-color: rgb(40, 201, 40);
+}
+
+#login-comp button {
+  width:100%;
+  border: 0px;
+  background-color: rgb(48, 175, 48);
+  color: white;
+  padding:10px;
+  outline: none;
+}
+
+#login-comp .not-registered-wrapper {
+  display:block;
+  width:fit-content;
+}
+
+#login-comp .login-logo {
+  border-radius:50%;
+  background-color:seashell;
+  position:relative;
+  top: -60px;
+  left:-30px;
+  width: 64px;
+  height: 64px;
+  border-width: 2px;
+  box-shadow: 0px 5px 5px 0px #fefefe;
+  border-color: #f0f0f0;
+}
