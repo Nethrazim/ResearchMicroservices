@@ -2,7 +2,7 @@
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #2ba84a;
 }
 
 code {
@@ -13,4 +13,38 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.default-color {
+  color: #6b6969;
+}
+
+.center {
+  position: relative;
+  margin: auto;
+  width: fit-content;
+}
+
+.app-block {
+  display: block;
+}
+
+.app-inline-block {
+  display: inline-block;
+}
+
+.app-alert {
+  color: red;
+}
+
+.btn-disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.app-btn {
+  color: white;
+  width: 100%;
+  border: 0px;
+  padding: 5px;
 }
