@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using SO.BusinessLayer.Identity.Entities.DTOs;
 using SO.BusinessLayer.Tokens;
 using SO.BusinessLayer.Identity.Helpers;
+using SO.API.Helpers;
 
 namespace SO.BusinessLayer.Identity.Services
 {
@@ -23,13 +24,12 @@ namespace SO.BusinessLayer.Identity.Services
 
         public async Task<TokenDTO> AuthenticateAsync(string username, string password) {
             UserDTO user = await GetByUsernameAndPasswordAsync(username, password);
-            Token token = null;
-
-            if (user != null)
+            if (user == null)
             {
-                token = GenerateToken(_mapper.Map<User>(user));
+                ResponseHelper.ReturnNotFound("User not found.");
             }
 
+            Token token = GenerateToken(_mapper.Map<User>(user));
             return _mapper.Map<TokenDTO>(token);
         }
 

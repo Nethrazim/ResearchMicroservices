@@ -23,6 +23,11 @@ namespace SO.API
             //services.AddSwaggerGen();
         }
 
+        public void AddErrorMiddleware(IApplicationBuilder app)
+        {
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+        }
+
         public void ConfigureBaseServices(IApplicationBuilder app)
         {
             app.UseSwagger();

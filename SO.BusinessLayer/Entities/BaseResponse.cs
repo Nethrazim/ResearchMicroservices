@@ -8,7 +8,7 @@ namespace SO.BusinessLayer.Entities
     {
         public HttpStatusCode StatusCode { get; set; }
         public bool HasError { get; set; } = false;
-        public string ErrorMessage { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
 
         public BaseResponse()
         {

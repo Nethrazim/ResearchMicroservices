@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using SO.API.Responses;
 using System.Net;
 using Newtonsoft.Json;
+using SO.API.ResponseExceptions;
 
 namespace SO.API.Middleware
 {
@@ -20,27 +20,42 @@ namespace SO.API.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            ErrorResponse errorResponse = null;
+            
             var response = context.Response;
             response.ContentType = "application/json";
+
+            string result = string.Empty;
+            ErrorResponse errorResponse = null;
 
             try
             {
                 await _next(context);
             }
-            catch (HttpResponseException httpException)
+            catch (HttpResponseException ex)
             {
-
-                switch (httpException.StatusCode)
+                if (ex is NotFoundResponse)
                 {
-                    case HttpStatusCode.NotFound:
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        errorResponse = new NotFoundResponse() { ErrorMessage = httpException.Message };
-                        break;
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    errorResponse = new ErrorResponse()
+                    {
+                        Message = ex.ErrorMessage,
+                        StatusCode = HttpStatusCode.NotFound,
+                    };
+                    result = JsonConvert.SerializeObject(errorResponse);
                 }
             }
+            catch (Exception ex)
+            {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                errorResponse = new ErrorResponse()
+                {
+                    Message = ex.Message,
+                    StatusCode = HttpStatusCode.InternalServerError,
+                };
 
-            var result =  JsonConvert.SerializeObject(errorResponse);
+                result = JsonConvert.SerializeObject(errorResponse);
+            }
+
             await response.WriteAsync(result);
         }
     }

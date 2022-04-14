@@ -4,7 +4,7 @@ using System.Text;
 using SO.BusinessLayer.Entities;
 using SO.BusinessLayer.Identity.Entities.DTOs;
 
-namespace SO.BusinessLayer.Identity.Entities.Responses
+namespace SO.API.Identity.Model.Responses
 {
     public class AuthenticateResponse : EntityResponse<TokenDTO>
     {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SO.API.Identity.Entities.Requests;
-using SO.BusinessLayer.Identity.Entities.Responses;
+using SO.API.Identity.Model.Responses;
 using SO.BusinessLayer.Identity.Services;
 
 namespace SO.API.Identity.Controllers

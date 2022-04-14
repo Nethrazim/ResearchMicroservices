@@ -8,6 +8,7 @@ namespace BaseClientNS.Entities.Responses
     {
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
+        public int StatusCode { get; set; }
     }
 
 }
