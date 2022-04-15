@@ -45,9 +45,34 @@ namespace SO.BusinessLayer.Identity.Services
 
         public async Task<UserDTO> CreateUserAsync(string username, string email, string password, string role)
         {
+            UserDTO checkUser = await GetByEmail(email);
+            if (checkUser != null)
+            {
+                ResponseHelper.ReturnBadRequest("Email already in use");
+            }
+
+            checkUser = await GetByUsername(username);
+            if (checkUser != null)
+            {
+                ResponseHelper.ReturnBadRequest("Username already in use");
+            }
+
             UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = password, Role = role, Email = email }));
+
             await Repository.SaveChanges();
             return newUser;
+        }
+
+        public async Task<UserDTO> GetByEmail(string email)
+        {
+            UserDTO user = Mapper.Map<UserDTO>(await Repository.GetByEmail(email));
+            return user;
+        }
+
+        public async Task<UserDTO> GetByUsername(string username)
+        {
+            UserDTO user = Mapper.Map<UserDTO>(await Repository.GetByUsername(username));
+            return user;
         }
     }
 }

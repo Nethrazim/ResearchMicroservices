@@ -8,4 +8,8 @@
     <ProjectReference Include="..\SO.DataLayer\SO.DataLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Requests\" />
+  </ItemGroup>
+
 </Project>

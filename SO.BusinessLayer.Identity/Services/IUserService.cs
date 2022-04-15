@@ -13,5 +13,6 @@ namespace SO.BusinessLayer.Identity.Services
         Task<UserDTO> GetByUsernameAndPasswordAsync(string username, string password);
         Token GenerateToken(User user);
         Task<UserDTO> CreateUserAsync(string username, string email, string password, string role);
+        Task<UserDTO> GetByEmail(string email);
     }
 }

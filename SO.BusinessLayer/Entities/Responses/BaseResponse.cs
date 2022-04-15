@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
-namespace SO.BusinessLayer.Entities
+namespace SO.BusinessLayer.Entities.Responses
 {
     public class BaseResponse
     {

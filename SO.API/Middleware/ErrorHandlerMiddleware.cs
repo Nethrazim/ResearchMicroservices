@@ -43,6 +43,17 @@ namespace SO.API.Middleware
                     };
                     result = JsonConvert.SerializeObject(errorResponse);
                 }
+
+                if (ex is BadRequestResponse)
+                {
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    errorResponse = new ErrorResponse()
+                    {
+                        Message = ex.ErrorMessage,
+                        StatusCode = HttpStatusCode.BadRequest,
+                    };
+                    result = JsonConvert.SerializeObject(errorResponse);
+                }
             }
             catch (Exception ex)
             {

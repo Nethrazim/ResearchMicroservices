@@ -1,4 +1,5 @@
 ﻿using SO.BusinessLayer.Entities;
+using SO.BusinessLayer.Entities.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;

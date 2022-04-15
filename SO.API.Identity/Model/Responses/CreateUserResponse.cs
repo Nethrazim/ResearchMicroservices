@@ -4,6 +4,7 @@ using System.Text;
 using SO.DataLayer.Identity.Model;
 using SO.BusinessLayer.Entities;
 using SO.BusinessLayer.Identity.Entities.DTOs;
+using SO.BusinessLayer.Entities.Responses;
 
 namespace SO.API.Identity.Model.Responses
 {

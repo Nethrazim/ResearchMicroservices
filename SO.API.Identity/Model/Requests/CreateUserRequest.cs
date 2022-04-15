@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using SO.BusinessLayer.DataReference.Users;
 
 namespace SO.API.Identity.Entities.Requests
 {
-    public class CreateUserRequest
+    public class CreateUserRequest : IValidatableObject
     {
         [Required]
         public string Username { get; set; }
@@ -17,6 +18,18 @@ namespace SO.API.Identity.Entities.Requests
         public string Password { get; set; }
 
         [Required]
-        public string Role { get; set; }
+        public UserRoles Role { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+
+            if (Role == UserRoles.SuperAdmin)
+            {
+                results.Add(new ValidationResult("Invalid role for user."));
+            }
+            return results;
+        }
     }
+
 }

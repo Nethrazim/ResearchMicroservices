@@ -5,12 +5,22 @@ using System.Text;
 
 namespace SO.API.Identity.Entities.Requests
 {
-    public class AuthenticateRequest 
+    public class AuthenticateRequest
     {
         [Required]
         public string Username { get; set; }
 
         [Required]
         public string Password { get; set; }
+
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            if (Username != Password)
+            {
+                results.Add(new ValidationResult("Username and password do not match."));
+            }
+            return results;
+        }
     }
 }

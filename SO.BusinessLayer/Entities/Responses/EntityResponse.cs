@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SO.BusinessLayer.Entities
+namespace SO.BusinessLayer.Entities.Responses
 {
     public class EntityResponse<T> : BaseResponse
     where T : class
