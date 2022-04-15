@@ -35,8 +35,8 @@ namespace SO.API.Identity
             return identityConfiguration;
         }
 
-        public Lazy<IdentityConfig> IdentityConfigLazy = new Lazy<IdentityConfig>(LoadIdentityConfiguration);
-        public IdentityConfig IdentityConfiguration => IdentityConfigLazy.Value;
+        public static Lazy<IdentityConfig> IdentityConfigLazy = new Lazy<IdentityConfig>(LoadIdentityConfiguration);
+        public static IdentityConfig IdentityConfiguration => IdentityConfigLazy.Value;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,7 +46,7 @@ namespace SO.API.Identity
             services.AddScoped<DbContext, IdentityContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

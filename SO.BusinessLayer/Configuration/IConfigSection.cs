@@ -7,6 +7,6 @@ namespace SO.BusinessLayer.Configuration
 {
     public interface IConfigSection
     {
-        string GetConfigurationSectionPath { get; }
+        static string GetConfigurationSectionPath { get; }
     }
 }

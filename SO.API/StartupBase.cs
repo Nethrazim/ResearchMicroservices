@@ -23,6 +23,7 @@ namespace SO.API
 
         public void AddBaseServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
             services.AddSwaggerGen();
             services.AddAutoMapper(this.GetType());
         }

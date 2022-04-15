@@ -1,4 +1,5 @@
-﻿using SO.DataLayer.Repositories;
+﻿using Microsoft.Extensions.Configuration;
+using SO.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,9 +11,11 @@ namespace SO.BusinessLayer.Services
     public class GenericService<TRepository, TEntity, TKey> where TRepository : IGenericRepository<TEntity, TKey> where TEntity : class where TKey : struct
     {
         public TRepository Repository { get; set; }
-        public GenericService(TRepository repository)
+        public IConfiguration Configuration { get; set; }
+        public GenericService(TRepository repository, IConfiguration configuration)
         {
             Repository = repository;
+            Configuration = configuration;
         }
 
         public async Task<bool> DeleteAsync(TKey id)
