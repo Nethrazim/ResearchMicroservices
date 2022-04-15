@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using AutoMapper;
 using SO.API.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SO.API
 {
     public class StartupBase
     {
-        protected IConfiguration Configuration { get; set; }
+        protected static IConfiguration Configuration { get; set; }
         public StartupBase(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public void AddBaseServices(IServiceCollection services, string title)
+        public void AddBaseServices(IServiceCollection services)
         {
-            //services.AddSwaggerGen();
+            services.AddSwaggerGen();
+            services.AddAutoMapper(this.GetType());
         }
 
         public void AddErrorMiddleware(IApplicationBuilder app)
