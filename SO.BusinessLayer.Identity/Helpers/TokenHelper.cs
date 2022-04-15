@@ -6,16 +6,17 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using SO.DataLayer.Identity.Model;
 using SO.BusinessLayer.Tokens;
+using Microsoft.Extensions.Configuration;
 
 namespace SO.BusinessLayer.Identity.Helpers
 {
     internal class TokenHelper
     {
-        public static Token Generate(User user)
+        public static Token Generate(User user, IConfiguration configuration)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("asdasdasdadsadasdsaasdasdsadasasdasd");
+            var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("Identity:IssuerSigningKey").ToCharArray());
             var claims = new Dictionary<string, object>();
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -24,8 +25,8 @@ namespace SO.BusinessLayer.Identity.Helpers
                             new Claim(ClaimTypes.Role, user.Role) }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                Audience = "protv",
-                Issuer = "protv",
+                Audience = configuration.GetValue<string>("Identity:ValidAudience"),
+                Issuer = configuration.GetValue<string>("Identity:ValidIssuer"),
 
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

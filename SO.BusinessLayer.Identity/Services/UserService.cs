@@ -9,17 +9,17 @@ using SO.BusinessLayer.Identity.Entities.DTOs;
 using SO.BusinessLayer.Tokens;
 using SO.BusinessLayer.Identity.Helpers;
 using SO.API.Helpers;
+using Microsoft.Extensions.Configuration;
+using SO.BusinessLayer.Services;
 
 namespace SO.BusinessLayer.Identity.Services
 {
-    public class UserService : IUserService
+    public class UserService : GenericService<IUserRepository, User, int>, IUserService
     {
-        private IUserRepository UserRepository { get; set; }
-        private IMapper _mapper;
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        private IMapper Mapper;
+        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration): base(userRepository, configuration)
         {
-            this.UserRepository = userRepository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
 
         public async Task<TokenDTO> AuthenticateAsync(string username, string password) {
@@ -29,24 +29,24 @@ namespace SO.BusinessLayer.Identity.Services
                 ResponseHelper.ReturnNotFound("User not found.");
             }
 
-            Token token = GenerateToken(_mapper.Map<User>(user));
-            return _mapper.Map<TokenDTO>(token);
+            Token token = GenerateToken(Mapper.Map<User>(user));
+            return Mapper.Map<TokenDTO>(token);
         }
 
         public async Task<UserDTO> GetByUsernameAndPasswordAsync(string username, string password)
         {
-            return _mapper.Map<UserDTO>(await UserRepository.GetByUsernameAndPasswordAsync(username, password));
+            return Mapper.Map<UserDTO>(await Repository.GetByUsernameAndPasswordAsync(username, password));
         }
 
         public Token GenerateToken(User user)
         {
-            return TokenHelper.Generate(user);
+            return TokenHelper.Generate(user, Configuration);
         }
 
         public async Task<UserDTO> CreateUserAsync(string username, string email, string password, string role)
         {
-            UserDTO newUser = _mapper.Map<UserDTO>(await UserRepository.CreateAsync(new User() { Username = username, Password = password, Role = role, Email = email }));
-            await UserRepository.SaveChanges();
+            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = password, Role = role, Email = email }));
+            await Repository.SaveChanges();
             return newUser;
         }
     }

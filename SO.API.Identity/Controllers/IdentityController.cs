@@ -43,5 +43,13 @@ namespace SO.API.Identity.Controllers
             response.Entity = await UserService.CreateUserAsync(request.Username, request.Email, request.Password, request.Role);
             return response;
         }
+         
+        [HttpPost]
+        [Route("users/changepassword")]
+        [Authorize]
+        public async Task ChangeUserPassword()
+        {
+
+        }
     }
 }

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
+using SO.BusinessLayer.Identity.Configurations;
 
 namespace SO.API.Identity 
 {
@@ -28,17 +29,24 @@ namespace SO.API.Identity
             Configuration = configuration;
         }
 
+        static IdentityConfig LoadIdentityConfiguration() {
+            IdentityConfig identityConfiguration = new IdentityConfig();
+            Configuration.Bind(IdentityConfig.ConfigurationSectionPath, identityConfiguration);
+            return identityConfiguration;
+        }
+
+        public static Lazy<IdentityConfig> IdentityConfigLazy = new Lazy<IdentityConfig>(LoadIdentityConfiguration);
+        public static IdentityConfig IdentityConfiguration => IdentityConfigLazy.Value;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            AddBaseServices(services, "Identity API");
-
             services.AddControllers();
 
             services.AddScoped<DbContext, IdentityContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -46,18 +54,16 @@ namespace SO.API.Identity
                     options.SaveToken = true;
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdasdasdadsadasdsaasdasdsadasasdasd")),
-                        ValidateAudience = true,
-                        ValidAudience = "protv",
-                        ValidateIssuer = true,
-                        ValidIssuer = "protv",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(IdentityConfiguration.IssuerSigningKey.ToCharArray())),
+                        ValidateAudience = IdentityConfiguration.ValidateAudience,
+                        ValidAudience = IdentityConfiguration.ValidAudience,
+                        ValidateIssuer = IdentityConfiguration.ValidateIssuer,
+                        ValidIssuer = IdentityConfiguration.ValidIssuer,
                         ClockSkew = TimeSpan.Zero
                     };
                 });
 
-            services.AddSwaggerGen();
-
-            services.AddAutoMapper(this.GetType());
+            AddBaseServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
