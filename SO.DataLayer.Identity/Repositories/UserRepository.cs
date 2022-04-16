@@ -29,5 +29,15 @@ namespace SO.DataLayer.Identity.Repositories
             return await _dbContext.Set<User>().Where(u => u.Username == username).FirstOrDefaultAsync();
         }
 
+        public async Task<bool> ChangePasswordForStudentTeacher(string username, string password, string salt)
+        {
+            var user = await this.GetByUsername(username);
+            user.Password = password;
+            user.Salt = salt;
+            await this.UpdateAsync(user);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

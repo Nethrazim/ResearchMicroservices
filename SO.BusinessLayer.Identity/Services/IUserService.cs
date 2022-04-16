@@ -14,5 +14,6 @@ namespace SO.BusinessLayer.Identity.Services
         Token GenerateToken(User user);
         Task<UserDTO> CreateUserAsync(string username, string email, string password, string role);
         Task<UserDTO> GetByEmail(string email);
+        Task<bool> ChangePasswordForStudentTeacher(string username, string newPassword);
     }
 }

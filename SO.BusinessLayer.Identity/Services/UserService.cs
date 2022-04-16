@@ -84,5 +84,16 @@ namespace SO.BusinessLayer.Identity.Services
             UserDTO user = Mapper.Map<UserDTO>(await Repository.GetByUsername(username));
             return user;
         }
+
+        public async Task<bool> ChangePasswordForStudentTeacher(string username, string newPassword)
+        {
+            if (await this.GetByUsername(username) == null)
+            {
+                ResponseHelper.ReturnNotFound("User not found");
+            }
+            string newSalt = PasswordHelper.GenerateSalt();
+            string hashedNewPassword = PasswordHelper.GeneratePassword(newPassword, newSalt);
+            return await Repository.ChangePasswordForStudentTeacher(username, hashedNewPassword, newSalt);
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using SO.BusinessLayer.DataReference.Users;
 
-namespace SO.API.Identity.Entities.Requests
+namespace SO.API.Identity.Model.Requests
 {
     public class CreateUserRequest : IValidatableObject
     {

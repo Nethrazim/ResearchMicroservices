@@ -12,5 +12,6 @@ namespace SO.DataLayer.Identity.Repositories
         Task<User> GetByUsernameAndPasswordAsync(string username, string password);
         Task<User> GetByEmail(string email);
         Task<User> GetByUsername(string username);
+        Task<bool> ChangePasswordForStudentTeacher(string username, string password, string salt);
     }
 }

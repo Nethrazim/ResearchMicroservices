@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SO.API.Identity.Entities.Requests;
+using SO.API.Identity.Model.Requests;
 using SO.API.Identity.Model.Responses;
+using SO.BusinessLayer.DataReference.Users;
 using SO.BusinessLayer.Identity.Services;
 
 namespace SO.API.Identity.Controllers
@@ -31,6 +32,7 @@ namespace SO.API.Identity.Controllers
         {
             AuthenticateResponse response = new AuthenticateResponse();
             response.Entity = await UserService.AuthenticateAsync(request.Username, request.Password);
+            response.Message = "User authenticated succesfully";
             return response;
         }
 
@@ -41,15 +43,19 @@ namespace SO.API.Identity.Controllers
         {
             CreateUserResponse response = new CreateUserResponse();
             response.Entity = await UserService.CreateUserAsync(request.Username, request.Email, request.Password, request.Role.ToString());
+            response.Message = "User has been created";
             return response;
         }
          
         [HttpPost]
         [Route("users/changepassword")]
-        [Authorize]
-        public async Task ChangeUserPassword()
+        [Authorize(Roles = "Student,Teacher")]
+        public async Task<ChangePasswordResponse> ChangeUserPassword(ChangePasswordRequest request)
         {
-
+            ChangePasswordResponse response = new ChangePasswordResponse();
+            response.Value = await UserService.ChangePasswordForStudentTeacher(request.Username, request.NewPassword);
+            response.Message = "Password has been changed";
+            return response;
         }
     }
 }
