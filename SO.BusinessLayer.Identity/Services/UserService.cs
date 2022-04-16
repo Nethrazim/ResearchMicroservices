@@ -11,6 +11,7 @@ using SO.BusinessLayer.Identity.Helpers;
 using SO.API.Helpers;
 using Microsoft.Extensions.Configuration;
 using SO.BusinessLayer.Services;
+using SO.BusinessLayer.Helpers;
 
 namespace SO.BusinessLayer.Identity.Services
 {
@@ -35,7 +36,13 @@ namespace SO.BusinessLayer.Identity.Services
 
         public async Task<UserDTO> GetByUsernameAndPasswordAsync(string username, string password)
         {
-            return Mapper.Map<UserDTO>(await Repository.GetByUsernameAndPasswordAsync(username, password));
+            var userByUsername = await Repository.GetByUsername(username);
+            if (userByUsername == null)
+            {
+                ResponseHelper.ReturnNotFound("User not found");
+            }
+
+            return Mapper.Map<UserDTO>(await Repository.GetByUsernameAndPasswordAsync(username, PasswordHelper.GeneratePassword(password, userByUsername.Salt)));
         }
 
         public Token GenerateToken(User user)
@@ -57,7 +64,10 @@ namespace SO.BusinessLayer.Identity.Services
                 ResponseHelper.ReturnBadRequest("Username already in use");
             }
 
-            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = password, Role = role, Email = email }));
+            string salt = PasswordHelper.GenerateSalt();
+            string hashedPassword = PasswordHelper.GeneratePassword(password, salt);
+
+            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role = role, Email = email, Salt = salt }));
 
             await Repository.SaveChanges();
             return newUser;

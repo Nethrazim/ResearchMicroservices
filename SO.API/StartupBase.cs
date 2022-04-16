@@ -25,7 +25,8 @@ namespace SO.API
         {
             services.AddSingleton(Configuration);
             services.AddSwaggerGen();
-            services.AddAutoMapper(this.GetType());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMvc().AddNewtonsoftJson();
         }
 
         public void AddErrorMiddleware(IApplicationBuilder app)

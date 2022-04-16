@@ -7,11 +7,13 @@ using SO.DataLayer.Identity.Model;
 
 namespace SO.BusinessLayer.Identity.ProfileMappings
 {
-    internal class UserProfile : Profile
+    public class UserProfile : Profile
     {
         public UserProfile()
         {
-            CreateMap<User, UserDTO>().ReverseMap();   
+            CreateMap<User, UserDTO>();
+            CreateMap<UserDTO, User>()
+                .ForMember(x => x.Salt, y => y.Ignore());   
         }
     }
 }

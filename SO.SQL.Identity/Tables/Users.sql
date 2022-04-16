@@ -3,6 +3,7 @@
 	[Username] [nvarchar](50) NOT NULL,
 	[Email] [nvarchar](255) NOT NULL,
 	[Password] [nvarchar](255) NOT NULL,
+	[Salt] [nvarchar](255) NOT NULL,
 	[Role] [nvarchar](50) NULL,
 	[IsLockedOut] [bit] NOT NULL DEFAULT(0),
 	[SystemUserId] [uniqueidentifier] NOT NULL 

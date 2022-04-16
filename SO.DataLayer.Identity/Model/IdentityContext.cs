@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-#nullable disable
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
 
 namespace SO.DataLayer.Identity.Model
 {
@@ -23,21 +25,21 @@ namespace SO.DataLayer.Identity.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-HTUAB81;Database=SO.SQL.Identity;Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-HTUAB81;Database=Identity;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Id)
+                entity.HasIndex(e => e.Email)
+                    .HasName("ix_users_email")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Id);
+                entity.HasIndex(e => e.Username)
+                    .HasName("ix_users_username");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -48,6 +50,10 @@ namespace SO.DataLayer.Identity.Model
                     .HasMaxLength(255);
 
                 entity.Property(e => e.Role).HasMaxLength(50);
+
+                entity.Property(e => e.Salt)
+                    .IsRequired()
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.Username)
                     .IsRequired()
