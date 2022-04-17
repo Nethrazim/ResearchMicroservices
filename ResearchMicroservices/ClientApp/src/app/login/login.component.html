@@ -1,3 +1,4 @@
+<app-nav-menu></app-nav-menu>
 <div id="login-comp" class="center">
   <div class="login-logo">
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="gray" class="bi bi-person" viewBox="0 0 16 16">
@@ -6,10 +7,13 @@
   </div>
   <ul class="center">
     <li>
-        <input id="login-email" placeholder="Email..." [(ngModel)]="email">
+        <input id="login-username" placeholder="Username..." [(ngModel)]="username"/>
     </li>
     <li>
-        <input id="login-password" placeholder="Password..." [(ngModel)]="password">
+      <input id="login-email" placeholder="Email..." [(ngModel)]="email" />
+    </li>
+    <li>
+        <input id="login-password" placeholder="Password..." [(ngModel)]="password"/>
     </li>
     <li>
       <button class="center" (click)="onLogin()">LOGIN</button>

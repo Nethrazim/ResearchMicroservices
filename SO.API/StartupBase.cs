@@ -27,6 +27,13 @@ namespace SO.API
             services.AddSwaggerGen();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc().AddNewtonsoftJson();
+            services.AddCors(options => {
+                options.AddPolicy(name: "AllowedSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
         }
 
         public void AddErrorMiddleware(IApplicationBuilder app)
@@ -42,6 +49,7 @@ namespace SO.API
                 c.SwaggerEndpoint("swagger/v1/swagger.json", "API Version 1");
                 c.RoutePrefix = String.Empty;
             });
+
         }
     }
 }

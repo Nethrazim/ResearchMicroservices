@@ -8,8 +8,13 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
+export function getIdentityUrl() {
+  return "https://localhost:44326/api/Identity";
+}
+
 const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
+  { provide: 'IDENTITY_URL', useFactory: getIdentityUrl, deps: []}
 ];
 
 if (environment.production) {

@@ -11,6 +11,7 @@ namespace SO.BusinessLayer.Entities.Responses
     public class EntityResponse<T> : BaseResponse<BaseResult>
     where T : class
     {
+        [JsonProperty("Entity")]
         public T Entity { get; set; }
     }
 

@@ -76,6 +76,8 @@ namespace SO.API.Identity
 
             app.UseRouting();
 
+            app.UseCors("AllowedSpecificOrigins");
+
             app.UseAuthentication();
 
             app.UseAuthorization();

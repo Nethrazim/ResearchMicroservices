@@ -1,7 +1,13 @@
 a.navbar-brand {
+  display:block;
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color:orangered;
+}
+a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:visited {
+  color: orangered;
+  text-decoration: none;
 }
 
 html {
