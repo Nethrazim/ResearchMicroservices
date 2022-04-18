@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Alert } from 'selenium-webdriver';
+import { IdentityClientService } from '../http-client-services/identity.client.service';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -18,7 +20,7 @@ export class CreateAccountComponent implements OnInit {
   
   createFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(private identityClient: IdentityClientService, private router: Router) { }
 
   ngOnInit() {
     this.createFormGroup = new FormGroup({
@@ -32,11 +34,11 @@ export class CreateAccountComponent implements OnInit {
       ]),
       password: new FormControl(this.password, [
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(12)
       ]),
       confirmPassword: new FormControl(this.confirmPassword, [
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(12)
       ]),
     }); 
   }
@@ -69,8 +71,23 @@ export class CreateAccountComponent implements OnInit {
     return (this.formControls.confirmPassword.invalid && (this.formControls.confirmPassword.dirty || this.formControls.confirmPassword.touched))
   }
 
+  get passwordsDoNotMatch() {
+    return (((this.formControls.password.dirty || this.formControls.password.touched)
+      || (this.formControls.confirmPassword.dirty || this.formControls.confirmPassword.touched))
+      && this.formControls.password.value != this.formControls.confirmPassword.value);
+  }
+
   onSubmit() {
-    alert("mata");
+    this.identityClient.createUser(this.username, this.email, this.password, 1).subscribe(
+      response => {
+        if (response.HasError) {
+          alert(response.Message);
+        }
+        else {
+          alert(response.Message);
+          this.router.navigate(['/login']);
+        }
+      });
   }
    
 }

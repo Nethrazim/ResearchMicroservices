@@ -1,27 +1,32 @@
 <app-nav-menu></app-nav-menu>
 <div id="login-comp" class="center">
-  <div class="login-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="gray" class="bi bi-person" viewBox="0 0 16 16">
-      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-    </svg>
-  </div>
-  <ul class="center">
-    <li>
-        <input id="login-username" placeholder="Username..." [(ngModel)]="username"/>
-    </li>
-    <li>
-      <input id="login-email" placeholder="Email..." [(ngModel)]="email" />
-    </li>
-    <li>
-        <input id="login-password" placeholder="Password..." [(ngModel)]="password"/>
-    </li>
-    <li>
-      <button class="center" (click)="onLogin()">LOGIN</button>
-    </li>
-    <li>
-      <div>
-        <span class="center default-color not-registered-wrapper">Not registered? <a href="/register"><span class="app-inlineblock">Create account</span></a></span>
-      </div>
-    </li>
-  </ul>
+  <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+    <div class="login-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="gray" class="bi bi-person" viewBox="0 0 16 16">
+        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+      </svg>
+    </div>
+    <ul class="center">
+      <li>
+        <input id="login-username" placeholder="Username..." formControlName="fcUsername"  />
+        <div *ngIf="validateUsername">
+          <span class="app-alert">Username is min 6 chars.</span>
+        </div>
+      </li>
+      <li>
+        <input id="login-password" placeholder="Password..." formControlName="fcPassword"  />
+        <div *ngIf="validatePassword">
+          <span class="app-alert">Password is required and is min 12 chars.</span>
+        </div>
+      </li>
+      <li>
+        <button type="submit" class="center" [disabled]="!loginFormGroup.valid">LOGIN</button>
+      </li>
+      <li>
+        <div>
+          <span class="center default-color not-registered-wrapper">Not registered? <a href="/register"><span class="app-inlineblock">Create account</span></a></span>
+        </div>
+      </li>
+    </ul>
+  </form>
 </div>
