@@ -42,7 +42,7 @@ namespace SO.API.Identity.Controllers
         public async Task<CreateUserResponse> CreateUser(CreateUserRequest request)
         {
             CreateUserResponse response = new CreateUserResponse();
-            response.Entity = await UserService.CreateUserAsync(request.Username, request.Email, request.Password, request.Role.ToString());
+            response.Entity = await UserService.CreateUserAsync(request.Username, request.Email, request.Password, request.Role);
             response.Message = "User has been created";
             return response;
         }

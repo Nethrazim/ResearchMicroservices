@@ -14,7 +14,7 @@ namespace SO.BusinessLayer.Identity.Entities.DTOs
         [JsonIgnore]
         public string Password { get; set; }
         [JsonIgnore]
-        public string Role { get; set; }
+        public int Role { get; set; }
         [JsonIgnore]
         public bool IsLockedOut { get; set; }
         [JsonIgnore]

@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { IsLoggedInGuard } from './route-guards/loggedin.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [IsLoggedInGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: CreateAccountComponent }
     ])

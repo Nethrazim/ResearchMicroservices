@@ -4,7 +4,7 @@
 	[Email] [nvarchar](255) NOT NULL,
 	[Password] [nvarchar](255) NOT NULL,
 	[Salt] [nvarchar](255) NOT NULL,
-	[Role] [nvarchar](50) NULL,
+	[Role] INT NOT NULL,
 	[IsLockedOut] [bit] NOT NULL DEFAULT(0),
 	[SystemUserId] [uniqueidentifier] NOT NULL 
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 

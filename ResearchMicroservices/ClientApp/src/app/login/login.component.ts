@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(private identityClient: IdentityClientService,
-    private store: ApplicationStoreService
+      private store: ApplicationStoreService
     , private router: Router
   )
   {

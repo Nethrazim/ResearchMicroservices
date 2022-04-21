@@ -49,8 +49,6 @@ namespace SO.DataLayer.Identity.Model
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Role).HasMaxLength(50);
-
                 entity.Property(e => e.Salt)
                     .IsRequired()
                     .HasMaxLength(255);

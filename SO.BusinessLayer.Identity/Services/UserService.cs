@@ -12,6 +12,7 @@ using SO.API.Helpers;
 using Microsoft.Extensions.Configuration;
 using SO.BusinessLayer.Services;
 using SO.BusinessLayer.Helpers;
+using SO.BusinessLayer.DataReference.Users;
 
 namespace SO.BusinessLayer.Identity.Services
 {
@@ -50,7 +51,7 @@ namespace SO.BusinessLayer.Identity.Services
             return TokenHelper.Generate(user, Configuration);
         }
 
-        public async Task<UserDTO> CreateUserAsync(string username, string email, string password, string role)
+        public async Task<UserDTO> CreateUserAsync(string username, string email, string password, UserRoles role)
         {
             UserDTO checkUser = await GetByEmail(email);
             if (checkUser != null)
@@ -67,7 +68,7 @@ namespace SO.BusinessLayer.Identity.Services
             string salt = PasswordHelper.GenerateSalt();
             string hashedPassword = PasswordHelper.GeneratePassword(password, salt);
 
-            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role = role, Email = email, Salt = salt }));
+            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt }));
 
             await Repository.SaveChanges();
             return newUser;
