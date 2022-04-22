@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['/']">Research Microservices Project</a>
+      <a class="navbar-brand" [routerLink]="['/']">My School Online</a>
       <button class="navbar-toggler"
               type="button"
               data-toggle="collapse"
@@ -13,7 +13,7 @@
       </button>
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
            [ngClass]="{ show: isExpanded }">
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow app-navbar-list">
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">

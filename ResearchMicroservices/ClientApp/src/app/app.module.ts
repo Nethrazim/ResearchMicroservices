@@ -4,6 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+/*ROUTE GUARDS*/
+import { IsLoggedInGuard } from './route-guards/loggedin.guard';
+import { IsAdminLoggedInGuard } from './route-guards/admin.loggedin.guard';
+
 /*COMPONENTS*/
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,17 +18,6 @@ import { TestComponent } from './components/test/test.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { LoginComponent } from './components/login/login.component';
-
-/*PAGES*/
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { CreatePageComponent } from './pages/create-page/create-page.component';
-import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
-
-
-
-/*ROUTE GUARDS*/
-import { IsLoggedInGuard } from './route-guards/loggedin.guard';
-import { IsAdminLoggedInGuard } from './route-guards/admin.loggedin.guard';
 import { AdminNavMenuComponent } from './components/admin/admin-nav-menu/admin-nav-menu.component';
 import { AdminMyInstitutionPageComponent } from './pages/admin/admin-my-institution-page/admin-my-institution-page.component';
 import { AdminTeacherPageComponent } from './pages/admin/admin-teacher-page/admin-teacher-page.component';
@@ -32,8 +25,15 @@ import { AdminStudentPageComponent } from './pages/admin/admin-student-page/admi
 import { AdminClassPageComponent } from './pages/admin/admin-class-page/admin-class-page.component';
 import { AdminGradesPageComponent } from './pages/admin/admin-grades-page/admin-grades-page.component';
 import { AdminCoursesPageComponent } from './pages/admin/admin-courses-page/admin-courses-page.component';
+import { NavMenuItemComponent } from './components/admin/nav-menu-item/nav-menu-item.component';
+import { AdminManageInstitutionComponent } from './components/admin/admin-manage-institution/admin-manage-institution.component';
+import { AdminManageAddressComponent } from './components/admin/admin-manage-address/admin-manage-address.component';
+import { AdminManageContactsComponent } from './components/admin/admin-manage-contacts/admin-manage-contacts.component';
 
-
+/*PAGES*/
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CreatePageComponent } from './pages/create-page/create-page.component';
+import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
 
 
 @NgModule({
@@ -56,7 +56,11 @@ import { AdminCoursesPageComponent } from './pages/admin/admin-courses-page/admi
     AdminStudentPageComponent,
     AdminClassPageComponent,
     AdminGradesPageComponent,
-    AdminCoursesPageComponent
+    AdminCoursesPageComponent,
+    NavMenuItemComponent,
+    AdminManageInstitutionComponent,
+    AdminManageAddressComponent,
+    AdminManageContactsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,7 +81,8 @@ import { AdminCoursesPageComponent } from './pages/admin/admin-courses-page/admi
       { path: 'admin/students', component: AdminStudentPageComponent },
       { path: 'admin/classes',  component: AdminClassPageComponent },
       { path: 'admin/grades',   component: AdminGradesPageComponent },
-      { path: 'admin/courses',  component: AdminCoursesPageComponent },
+      { path: 'admin/courses', component: AdminCoursesPageComponent },
+      { path: 'development', component: AdminMyInstitutionPageComponent}
     ])
   ],
   providers: [],

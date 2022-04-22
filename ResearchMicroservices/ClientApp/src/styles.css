@@ -42,9 +42,41 @@ code {
   cursor: not-allowed;
 }
 
+.page-content{
+    box-shadow: 0 2px 5px black;
+    height:700px;
+}
+
+.app-navbar-list a {
+    color:orangered !important;
+}
+
+.app-menu-centered-wrapper {
+  height: inherit;
+  display: flex;
+}
+
+.page-title {
+  color: orangered;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-left: 10px;
+}
+
 .app-btn {
   color: white;
   width: 100%;
   border: 0px;
   padding: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 50px 50px;
+    width:fit-content;
+    margin:auto;
+    justify-content:center;
+    margin:auto;
 }
