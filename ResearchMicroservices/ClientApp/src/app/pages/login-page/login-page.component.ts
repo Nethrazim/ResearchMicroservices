@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavMenuComponent } from '../../components/nav-menu/nav-menu.component';
 
 @Component({
   selector: 'app-login-page',
@@ -7,8 +6,8 @@ import { NavMenuComponent } from '../../components/nav-menu/nav-menu.component';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

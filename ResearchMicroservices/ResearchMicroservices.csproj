@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\identity\ChangePasswordResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\route-guards\admin.loggedin.guard.ts" />
   </ItemGroup>
 
   <ItemGroup>

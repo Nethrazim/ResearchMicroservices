@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserRoles } from '../../data-reference/user-roles';
 import { IdentityClientService } from '../../http-client-services/identity.client.service';
 import { ApplicationStoreService } from '../../services/application.store.service';
 
@@ -46,12 +47,10 @@ export class LoginComponent implements OnInit {
         alert(response.Message);
       }
       else {
-        this.store.JwtToken = response.Entity.TokenValue;
-        this.store.Email = response.Entity.Email;
-        this.store.Username = response.Entity.Username;
-        this.store.TokenExpiresOn = response.Entity.Expires;
-        alert(response.Message);
-        this.router.navigate(['/register']);
+        this.store.setCredentials(response.Entity);
+        if (UserRoles.Admin == <UserRoles>this.store.Credentials.Role) {
+          this.router.navigate(['/admin-home']);
+        }
       }
     }, error => {
       alert(error.error.Message);

@@ -1,0 +1,25 @@
+#app-admin-nav-menu {
+  position:relative;
+  margin:auto;
+  background-color: white;
+  box-shadow: 0 6px 6px #ccc;
+  padding:10px;
+}
+
+#app-admin-nav-menu a {
+    position: relative;
+    margin: auto;
+    color: cadetblue;
+    font-weight:bold;
+}
+
+#app-admin-nav-menu ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+#app-admin-nav-menu ul li {
+    border-bottom:solid thin;
+    border-color:cadetblue;
+    padding: 5px;
+}

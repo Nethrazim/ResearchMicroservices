@@ -28,7 +28,7 @@ export class IdentityClientService {
   changePassword(username: string, newPassword: string): Observable<ChangePasswordResponse> {
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Bearer ${this.store.JwtToken}`
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
       })
     }
     return this.HttpClient.post<ChangePasswordResponse>(this.IdentityUrl + '/users/changepassword', {Username: username, NewPassword: newPassword}, httpOptions);

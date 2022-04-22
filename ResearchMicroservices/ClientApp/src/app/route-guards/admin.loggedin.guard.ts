@@ -5,14 +5,20 @@ import { ApplicationStoreService } from '../services/application.store.service';
 
 @Injectable({
 providedIn: 'root'})
-export class IsLoggedInGuard implements CanActivate {
+export class IsAdminLoggedInGuard implements CanActivate {
 
   constructor(private store: ApplicationStoreService, private router : Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
     if (!this.store.Credentials) {
       this.router.navigate(['']);
     }
+
+    if (!(this.store.Credentials.Role)) {
+      this.router.navigate(['']);
+    }
+
     return true;
   }
 }
