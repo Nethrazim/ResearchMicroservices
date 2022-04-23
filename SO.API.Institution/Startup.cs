@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SO.API.Institution.Messaging.Consumers;
 using SO.BusinessLayer.Institution.Services;
+using SO.BusinessLayer.Messaging.Events;
 using SO.DataLayer.Institution.Model;
 using SO.DataLayer.Institution.Repositories;
 using System;
@@ -35,6 +38,23 @@ namespace SO.API.Institution
             services.AddScoped<IInstitutionService, InstitutionService>();
 
             AddBaseServices(services);
+
+
+            services.AddMassTransit(x => {
+                x.UsingRabbitMq((context, config) => {
+                    config.Host("amqp://guest:guest@localhost:5672");
+                });
+            });
+
+            var bus = Bus.Factory.CreateUsingRabbitMq(config =>
+            {
+                config.ReceiveEndpoint(typeof(IUserChangedEvent).ToString(), e =>
+                {
+                    e.Consumer<UserChangedConsumer>();
+                });
+            });
+
+            bus.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

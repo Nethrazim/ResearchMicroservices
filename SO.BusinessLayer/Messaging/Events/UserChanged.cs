@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SO.BusinessLayer.Identity.Entities.DTOs
+namespace SO.BusinessLayer.Messaging.Events
 {
-    public class UserDTO
+    public class UserChanged : IUserChangedEvent
     {
         public int Id { get; set; }
         public string Username { get; set; }

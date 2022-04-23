@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SO.BusinessLayer.Messaging.Publish
 {
-    public class BasePublisher
+    public class BasePublisher<T> : IBasePublisher<T>
+    where T: class
     {
         private readonly IPublishEndpoint PublishEndpoint;
         public BasePublisher(IPublishEndpoint publishEndpoint)
@@ -14,9 +15,10 @@ namespace SO.BusinessLayer.Messaging.Publish
             PublishEndpoint = publishEndpoint;
         }
 
-        public void Publish<T>(T entity) where T : class
+        public async Task Publish(T entity)
         {
-            PublishEndpoint.Publish<T>(entity);
+            await PublishEndpoint.Publish<T>(entity);
         }
+     
     }
 }

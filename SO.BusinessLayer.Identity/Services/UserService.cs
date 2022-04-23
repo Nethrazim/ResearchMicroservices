@@ -13,15 +13,23 @@ using Microsoft.Extensions.Configuration;
 using SO.BusinessLayer.Services;
 using SO.BusinessLayer.Helpers;
 using SO.BusinessLayer.DataReference.Users;
+using MassTransit;
+using SO.BusinessLayer.Messaging.Publish;
+using SO.BusinessLayer.Messaging.Events;
 
 namespace SO.BusinessLayer.Identity.Services
 {
     public class UserService : GenericService<IUserRepository, User, int>, IUserService
     {
         private IMapper Mapper;
-        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration): base(userRepository, configuration)
+        private readonly IUserPublisher UserPublisher;
+        public UserService(IUserRepository userRepository, 
+            IUserPublisher userPublisher,
+            IMapper mapper, 
+            IConfiguration configuration): base(userRepository, configuration)
         {
             Mapper = mapper;
+            UserPublisher = userPublisher;
         }
 
         public async Task<TokenDTO> AuthenticateAsync(string username, string password) {
@@ -71,6 +79,8 @@ namespace SO.BusinessLayer.Identity.Services
             UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt, SystemUserId = Guid.NewGuid() }));
 
             await Repository.SaveChanges();
+
+            await UserPublisher.Publish(Mapper.Map<UserChanged>(newUser));
             return newUser;
         }
 
