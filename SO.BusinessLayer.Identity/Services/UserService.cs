@@ -77,10 +77,9 @@ namespace SO.BusinessLayer.Identity.Services
             string hashedPassword = PasswordHelper.GeneratePassword(password, salt);
 
             UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt, SystemUserId = Guid.NewGuid() }));
-
             await Repository.SaveChanges();
 
-            await UserPublisher.Publish(Mapper.Map<UserChanged>(newUser));
+            await UserPublisher.Publish(Mapper.Map<UserChanged>(await Repository.GetByUsername(username)));
             return newUser;
         }
 

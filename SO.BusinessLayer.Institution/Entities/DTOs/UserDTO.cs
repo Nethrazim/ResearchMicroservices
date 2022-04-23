@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SO.BusinessLayer.Messaging.Events
+namespace SO.BusinessLayer.Institution.Entities.DTOs
 {
-    public class UserChanged : IUserChangedEvent
+    public class UserDTO
     {
         public int Id { get; set; }
         public string Username { get; set; }

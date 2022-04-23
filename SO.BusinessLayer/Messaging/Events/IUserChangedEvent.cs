@@ -9,9 +9,7 @@ namespace SO.BusinessLayer.Messaging.Events
         public int Id { get; }
         public string Username { get; }
         public string Email { get;}
-        public string Password { get;}
         public int Role { get; }
-        public bool IsLockedOut { get; }
         public Guid SystemUserId { get; }
     }
 }

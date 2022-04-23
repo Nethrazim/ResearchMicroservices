@@ -74,18 +74,6 @@ namespace SO.API.Identity
                     config.Host("amqp://guest:guest@localhost:5672");
                 });
             });
-
-            var bus = Bus.Factory.CreateUsingRabbitMq(config =>
-            {
-                /*
-                config.ReceiveEndpoint(typeof(IUserChangedEvent).ToString(), e =>
-                {
-                    e.Consumer<UserChangedConsumer>();
-                });
-                */
-            });
-
-            bus.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -60,5 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Institution.sql" />
+    <Build Include="Tables\User.sql" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ namespace SO.BusinessLayer.Identity.ProfileMappings
         {
             CreateMap<CreateUserRequest,User>();
             CreateMap<UserDTO, UserChanged>();
+            CreateMap<User, UserChanged>();
         }
     }
 }

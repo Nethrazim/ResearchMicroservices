@@ -36,25 +36,20 @@ namespace SO.API.Institution
             services.AddScoped<DbContext, InstitutionContext>();
             services.AddScoped<IInstitutionRepository, InstitutionRepository>();
             services.AddScoped<IInstitutionService, InstitutionService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<UserChangedConsumer>();
 
             AddBaseServices(services);
-
 
             services.AddMassTransit(x => {
                 x.UsingRabbitMq((context, config) => {
                     config.Host("amqp://guest:guest@localhost:5672");
+                    config.ConfigureEndpoints(context);
                 });
-            });
 
-            var bus = Bus.Factory.CreateUsingRabbitMq(config =>
-            {
-                config.ReceiveEndpoint(typeof(IUserChangedEvent).ToString(), e =>
-                {
-                    e.Consumer<UserChangedConsumer>();
-                });
+                x.AddConsumer<UserChangedConsumer>();
             });
-
-            bus.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace SO.BusinessLayer.Messaging.Events
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
+namespace SO.DataLayer.Institution.Model
 {
-    public class UserChanged : IUserChangedEvent
+    public partial class User
     {
         public int Id { get; set; }
         public string Username { get; set; }
