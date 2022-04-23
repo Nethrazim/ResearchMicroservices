@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.23">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SO.API\SO.API.csproj" />
+    <ProjectReference Include="..\SO.BusinessLayer.Institution\SO.BusinessLayer.Institution.csproj" />
+    <ProjectReference Include="..\SO.BusinessLayer\SO.BusinessLayer.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -68,7 +68,7 @@ namespace SO.BusinessLayer.Identity.Services
             string salt = PasswordHelper.GenerateSalt();
             string hashedPassword = PasswordHelper.GeneratePassword(password, salt);
 
-            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt }));
+            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt, SystemUserId = Guid.NewGuid() }));
 
             await Repository.SaveChanges();
             return newUser;
