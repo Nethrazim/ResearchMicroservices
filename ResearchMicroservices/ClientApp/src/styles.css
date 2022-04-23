@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 a {
   color: #2ba84a;
+}
+
+a:hover {
+  font-weight: bold;
 }
 
 code {
@@ -47,17 +52,13 @@ code {
     height:700px;
 }
 
-.app-navbar-list a {
-    color:orangered !important;
-}
-
 .app-menu-centered-wrapper {
   height: inherit;
   display: flex;
 }
 
 .page-title {
-  color: orangered;
+  color: deepskyblue;
   font-size: 14px;
   font-weight: bold;
   text-decoration: underline;

@@ -1,15 +1,16 @@
 #app-admin-nav-menu {
-  position:relative;
-  margin:auto;
-  background-color: white;
+  position: relative;
+  margin: auto;
+  background-color: deepskyblue;
   box-shadow: 0 6px 6px #ccc;
-  padding:10px;
+  padding: 10px;
+  /*border: 1px solid orangered;*/
 }
 
 #app-admin-nav-menu a {
     position: relative;
     margin: auto;
-    color: cadetblue;
+    color: white;
     font-weight:bold;
 }
 
@@ -20,6 +21,6 @@
 
 #app-admin-nav-menu ul li {
     border-bottom:solid thin;
-    border-color:cadetblue;
+    border-color:white;
     padding: 5px;
 }

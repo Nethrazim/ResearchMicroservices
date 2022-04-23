@@ -1,12 +1,15 @@
+.navbar {
+    background-color: deepskyblue;
+}
 a.navbar-brand {
-  display:block;
+  display: block;
   white-space: normal;
   text-align: center;
   word-break: break-all;
-  color:orangered;
+  color: white;
 }
 a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:visited {
-  color: orangered;
+  color: white;
   text-decoration: none;
 }
 
@@ -21,4 +24,8 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.app-navbar-list a {
+  color: white !important;
 }
