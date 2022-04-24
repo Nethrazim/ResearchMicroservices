@@ -42,6 +42,17 @@ namespace SO.BusinessLayer.Institution.Services
             return entity;
         }
 
+        public async Task<InstitutionDTO> GetByAdminId(Guid adminId)
+        {
+            InstitutionDTO institution = Mapper.Map<InstitutionDTO>(await Repository.GetByAdminId(adminId));
+            if (institution == null)
+            {
+                ResponseHelper.ReturnNotFound("Institution does not exist");
+            }
+
+            return institution;
+        }
+
         public async Task<InstitutionDTO> GetByName(string name)
         {
             return Mapper.Map<InstitutionDTO>(await Repository.GetByName(name));

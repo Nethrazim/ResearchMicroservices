@@ -38,7 +38,8 @@ namespace SO.BusinessLayer.Identity.Helpers
                 Expires = ((DateTimeOffset)tokenDescriptor.Expires).ToUnixTimeSeconds(),
                 Username = user.Username,
                 Email = user.Email,
-                Role = (UserRoles)user.Role
+                Role = (UserRoles)user.Role,
+                SystemUserId = user.SystemUserId,
             };
 
             return response;

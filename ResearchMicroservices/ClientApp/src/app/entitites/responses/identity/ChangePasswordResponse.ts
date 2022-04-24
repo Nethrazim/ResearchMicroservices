@@ -1,4 +1,4 @@
 import { EntityResponse } from "../../EntityResponse";
 
-export interface ChangePasswordResponse extends EntityResponse<boolean> {
+export class ChangePasswordResponse extends EntityResponse<boolean> {
 }

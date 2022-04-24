@@ -3,5 +3,6 @@ export interface Token {
   Email: string,
   TokenValue: string,
   Expires: number,
-  Role: number
+  Role: number,
+  SystemUserId: string
 };

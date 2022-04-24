@@ -35,12 +35,15 @@
     <None Remove="ClientApp\src\app\entitites\Token.ts" />
     <None Remove="ClientApp\src\app\http-client-services\identity.client.service.ts" />
     <None Remove="ClientApp\src\app\entitites\BaseResponse.ts" />
+    <None Remove="ClientApp\src\app\http-client-services\institution.client.service.ts" />
     <None Remove="ClientApp\src\app\services\application.store.service.ts" />
     <None Remove="ClientApp\src\app\services\auth.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\identity\ChangePasswordResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\GetByAdminIdResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\Institution.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\route-guards\admin.loggedin.guard.ts" />
   </ItemGroup>
 
@@ -58,6 +61,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\entitites\EntityResponse.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\http-client-services\institution.client.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\route-guards\loggedin.guard.ts">

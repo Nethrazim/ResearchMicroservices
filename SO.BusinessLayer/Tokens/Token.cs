@@ -13,5 +13,6 @@ namespace SO.BusinessLayer.Tokens
         public string TokenValue { get; set; }
         public long Expires { get; set; }
         public UserRoles Role { get; set; }
+        public Guid SystemUserId { get; set; }
     }
 }

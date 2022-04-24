@@ -9,5 +9,7 @@ namespace SO.BusinessLayer.Institution.Services
     {
         Task<InstitutionDTO> CreateInstitutionAsync(string name, Guid adminId);
         Task<InstitutionDTO> GetByName(string name);
+
+        Task<InstitutionDTO> GetByAdminId(Guid adminId);
     }
 }

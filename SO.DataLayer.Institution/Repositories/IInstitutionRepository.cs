@@ -9,5 +9,6 @@ namespace SO.DataLayer.Institution.Repositories
     public interface IInstitutionRepository : IGenericRepository<SO.DataLayer.Institution.Model.Institution, int>
     {
         Task<Institution.Model.Institution> GetByName(string name);
+        Task<Institution.Model.Institution> GetByAdminId(Guid adminId);
     }
 }

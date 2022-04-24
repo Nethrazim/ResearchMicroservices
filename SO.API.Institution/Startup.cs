@@ -49,6 +49,7 @@ namespace SO.API.Institution
                 });
 
                 x.AddConsumer<UserChangedConsumer>();
+                x.AddConsumer<EventChangedConsumer>();
             });
         }
 

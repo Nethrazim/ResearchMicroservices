@@ -35,6 +35,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
 
+/*Material UI*/
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-land
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -83,7 +87,8 @@ import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-land
       { path: 'admin/grades',   component: AdminGradesPageComponent },
       { path: 'admin/courses', component: AdminCoursesPageComponent },
       { path: 'development', component: AdminMyInstitutionPageComponent}
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

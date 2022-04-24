@@ -23,13 +23,16 @@ namespace SO.BusinessLayer.Identity.Services
     {
         private IMapper Mapper;
         private readonly IUserPublisher UserPublisher;
+        private readonly IEvent2Publisher Event2Publisher;
         public UserService(IUserRepository userRepository, 
             IUserPublisher userPublisher,
+            IEvent2Publisher eventPublisher,
             IMapper mapper, 
             IConfiguration configuration): base(userRepository, configuration)
         {
             Mapper = mapper;
             UserPublisher = userPublisher;
+            Event2Publisher = eventPublisher;
         }
 
         public async Task<TokenDTO> AuthenticateAsync(string username, string password) {
@@ -80,6 +83,7 @@ namespace SO.BusinessLayer.Identity.Services
             await Repository.SaveChanges();
 
             await UserPublisher.Publish(Mapper.Map<UserChanged>(await Repository.GetByUsername(username)));
+            await Event2Publisher.Publish(new EventChanged() { Message = "Mata" });
             return newUser;
         }
 

@@ -38,5 +38,16 @@ namespace SO.API.Institution.Controllers
             response.Entity = await InstitutionService.CreateInstitutionAsync(request.Name, request.AdminId);
             return response;
         }
+
+        [HttpPost]
+        [Route("institution/getByAdminId")]
+        [AllowAnonymous]
+        public async Task<GetInstitutionByAdminIdResponse> GetByAdminId(GetInstitutionByAdminIdRequest request)
+        {
+            GetInstitutionByAdminIdResponse response = new GetInstitutionByAdminIdResponse();
+            response.Entity = await InstitutionService.GetByAdminId(request.AdminId);
+            return response;
+            
+        }
     }
 }

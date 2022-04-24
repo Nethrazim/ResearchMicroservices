@@ -17,5 +17,10 @@ namespace SO.DataLayer.Institution.Repositories
         {
             return await _dbContext.Set<Institution.Model.Institution>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
+
+        public async Task<Institution.Model.Institution> GetByAdminId(Guid adminId)
+        {
+            return await _dbContext.Set<Institution.Model.Institution>().Where(i => i.AdminId == adminId).FirstOrDefaultAsync();
+        }
     }
 }
