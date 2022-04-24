@@ -14,6 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +25,54 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\data-reference\user-roles.ts" />
+    <None Remove="ClientApp\src\app\entitites\AuthenticateResponse.ts" />
+    <None Remove="ClientApp\src\app\entitites\EntitiesResponse.ts" />
+    <None Remove="ClientApp\src\app\entitites\EntityResponse.ts" />
+    <None Remove="ClientApp\src\app\entitites\Token.ts" />
+    <None Remove="ClientApp\src\app\http-client-services\identity.client.service.ts" />
+    <None Remove="ClientApp\src\app\entitites\BaseResponse.ts" />
+    <None Remove="ClientApp\src\app\http-client-services\institution.client.service.ts" />
+    <None Remove="ClientApp\src\app\services\application.store.service.ts" />
+    <None Remove="ClientApp\src\app\services\auth.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\identity\ChangePasswordResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\GetByAdminIdResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\Institution.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\route-guards\admin.loggedin.guard.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\entitites\Token.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\http-client-services\identity.client.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\entitites\BaseResponse.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\application.store.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\entitites\EntitiesResponse.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\entitites\EntityResponse.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\http-client-services\institution.client.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\route-guards\loggedin.guard.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\pages\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

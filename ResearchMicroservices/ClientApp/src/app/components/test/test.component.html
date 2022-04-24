@@ -1,0 +1,15 @@
+<app-nav-menu></app-nav-menu>
+<!--<ul>
+  <li *ngFor="let name of getSortedNames()">
+    <app-list-item [name]="name"></app-list-item>
+  </li>
+</ul>
+  -->
+
+<app-list-item *ngFor="let name of getSortedNames()" [name]="name" (ItemSelectedEmitter)="OnListItemSelected()"></app-list-item>
+
+<form>
+  <input type="text" #name />
+  <input type="text" #anothername />
+  <button (click)="addNames(name, anothername)">Add two names</button>
+</form>

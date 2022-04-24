@@ -11,15 +11,28 @@ using SO.BusinessLayer.Identity.Helpers;
 using SO.API.Helpers;
 using Microsoft.Extensions.Configuration;
 using SO.BusinessLayer.Services;
+using SO.BusinessLayer.Helpers;
+using SO.BusinessLayer.DataReference.Users;
+using MassTransit;
+using SO.BusinessLayer.Messaging.Publish;
+using SO.BusinessLayer.Messaging.Events;
 
 namespace SO.BusinessLayer.Identity.Services
 {
     public class UserService : GenericService<IUserRepository, User, int>, IUserService
     {
         private IMapper Mapper;
-        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration): base(userRepository, configuration)
+        private readonly IUserPublisher UserPublisher;
+        private readonly IEvent2Publisher Event2Publisher;
+        public UserService(IUserRepository userRepository, 
+            IUserPublisher userPublisher,
+            IEvent2Publisher eventPublisher,
+            IMapper mapper, 
+            IConfiguration configuration): base(userRepository, configuration)
         {
             Mapper = mapper;
+            UserPublisher = userPublisher;
+            Event2Publisher = eventPublisher;
         }
 
         public async Task<TokenDTO> AuthenticateAsync(string username, string password) {
@@ -35,7 +48,13 @@ namespace SO.BusinessLayer.Identity.Services
 
         public async Task<UserDTO> GetByUsernameAndPasswordAsync(string username, string password)
         {
-            return Mapper.Map<UserDTO>(await Repository.GetByUsernameAndPasswordAsync(username, password));
+            var userByUsername = await Repository.GetByUsername(username);
+            if (userByUsername == null)
+            {
+                ResponseHelper.ReturnNotFound("User not found");
+            }
+
+            return Mapper.Map<UserDTO>(await Repository.GetByUsernameAndPasswordAsync(username, PasswordHelper.GeneratePassword(password, userByUsername.Salt)));
         }
 
         public Token GenerateToken(User user)
@@ -43,11 +62,52 @@ namespace SO.BusinessLayer.Identity.Services
             return TokenHelper.Generate(user, Configuration);
         }
 
-        public async Task<UserDTO> CreateUserAsync(string username, string email, string password, string role)
+        public async Task<UserDTO> CreateUserAsync(string username, string email, string password, UserRoles role)
         {
-            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = password, Role = role, Email = email }));
+            UserDTO checkUser = await GetByEmail(email);
+            if (checkUser != null)
+            {
+                ResponseHelper.ReturnBadRequest("Email already in use");
+            }
+
+            checkUser = await GetByUsername(username);
+            if (checkUser != null)
+            {
+                ResponseHelper.ReturnBadRequest("Username already in use");
+            }
+
+            string salt = PasswordHelper.GenerateSalt();
+            string hashedPassword = PasswordHelper.GeneratePassword(password, salt);
+
+            UserDTO newUser = Mapper.Map<UserDTO>(await Repository.CreateAsync(new User() { Username = username, Password = hashedPassword, Role= (int)role, Email = email, Salt = salt, SystemUserId = Guid.NewGuid() }));
             await Repository.SaveChanges();
+
+            await UserPublisher.Publish(Mapper.Map<UserChanged>(await Repository.GetByUsername(username)));
+            await Event2Publisher.Publish(new EventChanged() { Message = "Mata" });
             return newUser;
+        }
+
+        public async Task<UserDTO> GetByEmail(string email)
+        {
+            UserDTO user = Mapper.Map<UserDTO>(await Repository.GetByEmail(email));
+            return user;
+        }
+
+        public async Task<UserDTO> GetByUsername(string username)
+        {
+            UserDTO user = Mapper.Map<UserDTO>(await Repository.GetByUsername(username));
+            return user;
+        }
+
+        public async Task<bool> ChangePasswordForStudentTeacher(string username, string newPassword)
+        {
+            if (await this.GetByUsername(username) == null)
+            {
+                ResponseHelper.ReturnNotFound("User not found");
+            }
+            string newSalt = PasswordHelper.GenerateSalt();
+            string hashedNewPassword = PasswordHelper.GeneratePassword(newPassword, newSalt);
+            return await Repository.ChangePasswordForStudentTeacher(username, hashedNewPassword, newSalt);
         }
     }
 }

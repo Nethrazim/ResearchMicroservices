@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SO.API.Identity.Entities.Requests
+namespace SO.API.Identity.Model.Requests
 {
-    public class AuthenticateRequest 
+    public class AuthenticateRequest
     {
         [Required]
         public string Username { get; set; }

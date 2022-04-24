@@ -1,0 +1,9 @@
+.app-manage-contacts {
+    position:relative;
+    left: 50px;
+    top: 20px;
+}
+
+.app-manage-contacts .mat-header-cell  {
+    width: 200px;
+}

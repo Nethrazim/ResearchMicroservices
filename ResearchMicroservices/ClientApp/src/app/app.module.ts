@@ -4,36 +4,91 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+/*ROUTE GUARDS*/
+import { IsLoggedInGuard } from './route-guards/loggedin.guard';
+import { IsAdminLoggedInGuard } from './route-guards/admin.loggedin.guard';
+
+/*COMPONENTS*/
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { LoginComponent } from './login/login.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { TestComponent } from './components/test/test.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { LoginComponent } from './components/login/login.component';
+import { AdminNavMenuComponent } from './components/admin/admin-nav-menu/admin-nav-menu.component';
+import { AdminMyInstitutionPageComponent } from './pages/admin/admin-my-institution-page/admin-my-institution-page.component';
+import { AdminTeacherPageComponent } from './pages/admin/admin-teacher-page/admin-teacher-page.component';
+import { AdminStudentPageComponent } from './pages/admin/admin-student-page/admin-student-page.component';
+import { AdminClassPageComponent } from './pages/admin/admin-class-page/admin-class-page.component';
+import { AdminGradesPageComponent } from './pages/admin/admin-grades-page/admin-grades-page.component';
+import { AdminCoursesPageComponent } from './pages/admin/admin-courses-page/admin-courses-page.component';
+import { NavMenuItemComponent } from './components/admin/nav-menu-item/nav-menu-item.component';
+import { AdminManageInstitutionComponent } from './components/admin/admin-manage-institution/admin-manage-institution.component';
+import { AdminManageAddressComponent } from './components/admin/admin-manage-address/admin-manage-address.component';
+import { AdminManageContactsComponent } from './components/admin/admin-manage-contacts/admin-manage-contacts.component';
+
+/*PAGES*/
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CreatePageComponent } from './pages/create-page/create-page.component';
+import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
+
+/*Material UI*/
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     HomeComponent,
+    NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
+    LoginPageComponent,
     CreateAccountComponent,
+    CreatePageComponent,
+    ListItemComponent,
+    TestComponent,
+    AdminLandingPageComponent,
+    AdminNavMenuComponent,
+    AdminMyInstitutionPageComponent,
+    AdminTeacherPageComponent,
+    AdminStudentPageComponent,
+    AdminClassPageComponent,
+    AdminGradesPageComponent,
+    AdminCoursesPageComponent,
+    NavMenuItemComponent,
+    AdminManageInstitutionComponent,
+    AdminManageAddressComponent,
+    AdminManageContactsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: CreateAccountComponent }
-    ])
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [IsLoggedInGuard] },
+      { path: 'login', component: LoginPageComponent },
+      { path: 'register', component: CreatePageComponent },
+      { path: 'test', component: TestComponent },
+      { path: 'admin-home', component: AdminLandingPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'develop-admin-page', component: AdminLandingPageComponent },
+      { path: 'admin/myinstitution', component: AdminMyInstitutionPageComponent },
+      { path: 'admin/teachers', component: AdminTeacherPageComponent },
+      { path: 'admin/students', component: AdminStudentPageComponent },
+      { path: 'admin/classes',  component: AdminClassPageComponent },
+      { path: 'admin/grades',   component: AdminGradesPageComponent },
+      { path: 'admin/courses', component: AdminCoursesPageComponent },
+      { path: 'development', component: AdminMyInstitutionPageComponent}
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

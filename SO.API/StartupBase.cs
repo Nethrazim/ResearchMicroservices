@@ -10,6 +10,7 @@ using SO.API.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using MassTransit;
 
 namespace SO.API
 {
@@ -25,7 +26,16 @@ namespace SO.API
         {
             services.AddSingleton(Configuration);
             services.AddSwaggerGen();
-            services.AddAutoMapper(this.GetType());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMvc().AddNewtonsoftJson();
+            services.AddCors(options => {
+                options.AddPolicy(name: "AllowedSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
+
         }
 
         public void AddErrorMiddleware(IApplicationBuilder app)

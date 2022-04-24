@@ -11,5 +11,10 @@ namespace SO.API.Helpers
         {
             throw new NotFoundResponse(errorMessage);
         }
+
+        public static void ReturnBadRequest(string errorMessage)
+        {
+            throw new BadRequestResponse(errorMessage);
+        }
     }
 }

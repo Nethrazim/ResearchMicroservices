@@ -1,0 +1,24 @@
+.app-nav-menu-item {
+    cursor:pointer;
+    display:flex;
+    width: 200px;
+    height: 200px;
+    background-color: aliceblue;
+    border: 1px solid cadetblue;
+}
+
+  .app-nav-menu-item:hover span
+  {
+      text-decoration:underline;
+      color:orangered;
+  }
+
+  .app-nav-menu-item span {
+    display: block;
+    position: relative;
+    margin: auto;
+    width: fit-content;
+    justify-content: center;
+    color: cadetblue;
+    font-weight: bold;
+  }

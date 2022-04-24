@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SO.API\SO.API.csproj" />
+    <ProjectReference Include="..\SO.BusinessLayer\SO.BusinessLayer.csproj" />
+    <ProjectReference Include="..\SO.DataLayer.Institution\SO.DataLayer.Institution.csproj" />
+  </ItemGroup>
+
+</Project>

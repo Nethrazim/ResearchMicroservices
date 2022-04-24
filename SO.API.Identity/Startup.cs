@@ -19,6 +19,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using SO.BusinessLayer.Identity.Configurations;
+using MassTransit;
+using SO.BusinessLayer.Messaging.Publish;
 
 namespace SO.API.Identity 
 {
@@ -44,9 +46,12 @@ namespace SO.API.Identity
             services.AddControllers();
 
             services.AddScoped<DbContext, IdentityContext>();
+            services.AddScoped<IUserPublisher, UserPublisher>();
+            services.AddScoped<IEvent2Publisher, Event2Publisher>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -64,6 +69,12 @@ namespace SO.API.Identity
                 });
 
             AddBaseServices(services);
+
+            services.AddMassTransit(x => {
+                x.UsingRabbitMq((context, config) => {
+                    config.Host("amqp://guest:guest@localhost:5672");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +86,8 @@ namespace SO.API.Identity
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowedSpecificOrigins");
 
             app.UseAuthentication();
 

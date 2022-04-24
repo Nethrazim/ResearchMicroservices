@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using SO.DataLayer.Identity.Model;
 using SO.BusinessLayer.Tokens;
 using Microsoft.Extensions.Configuration;
+using SO.BusinessLayer.DataReference.Users;
 
 namespace SO.BusinessLayer.Identity.Helpers
 {
@@ -22,7 +23,7 @@ namespace SO.BusinessLayer.Identity.Helpers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("userId", user.SystemUserId.ToString()),
-                            new Claim(ClaimTypes.Role, user.Role) }),
+                            new Claim(ClaimTypes.Role, ((UserRoles)user.Role).ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Audience = configuration.GetValue<string>("Identity:ValidAudience"),
@@ -30,13 +31,15 @@ namespace SO.BusinessLayer.Identity.Helpers
 
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
+            
             Token response = new Token()
             {
                 TokenValue = tokenHandler.WriteToken(token),
                 Expires = ((DateTimeOffset)tokenDescriptor.Expires).ToUnixTimeSeconds(),
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Role = (UserRoles)user.Role,
+                SystemUserId = user.SystemUserId,
             };
 
             return response;

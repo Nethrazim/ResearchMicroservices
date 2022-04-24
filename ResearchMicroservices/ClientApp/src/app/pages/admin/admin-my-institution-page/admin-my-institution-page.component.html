@@ -1,0 +1,34 @@
+<app-nav-menu></app-nav-menu>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <app-admin-nav-menu></app-admin-nav-menu>
+    </div>
+    <div class="col-10">
+      <div class="container-fluid">
+        <div class="page-content">
+          <div class="page-title-wrapper">
+            <span class="page-title">{{pageTitle}}</span>
+          </div>
+          <div *ngIf="displayMenu" class="app-menu-centered-wrapper">
+            <div class="grid-container">
+              <app-nav-menu-item (onNavMenuItemClicked)="Display($event)" [slug]="'manage-institution'" [title]="'Manage Institution'"></app-nav-menu-item>
+              <app-nav-menu-item (onNavMenuItemClicked)="Display($event)" [slug]="'manage-address'" [title]="'Manage Address'"></app-nav-menu-item>
+              <app-nav-menu-item (onNavMenuItemClicked)="Display($event)" [slug]="'manage-contacts'" [title]="'Manage Contacts'"></app-nav-menu-item>
+            </div>
+          </div>
+          <div *ngIf="displayManageInstitution">
+            <app-admin-manage-institution></app-admin-manage-institution>
+          </div>
+          <div *ngIf="displayManageAddress">
+            <app-admin-manage-address></app-admin-manage-address>
+          </div>
+          <div *ngIf="displayManageContacts">
+            <app-admin-manage-contacts></app-admin-manage-contacts>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
