@@ -9,7 +9,8 @@
 }
 
 .action-btn {
-    color:cadetblue;
+  color: cadetblue;
+  cursor: pointer;
 }
 
 .add-btn {

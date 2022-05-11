@@ -21,7 +21,6 @@ export class AdminManageInstitutionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.institutions = [];
     this.getInstitution();
   }
 
@@ -45,13 +44,23 @@ export class AdminManageInstitutionComponent implements OnInit {
       )
   }
 
-  onOpenDialog(action: string, element: HTMLInputElement) {
-    let dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(CreateInstitutionComponent, dialogConfig);
-    dialogRef.componentInstance.institutionCreated.subscribe((data) => {
-      this.onInstitutionCreated(data);
-    });
+  onOpenDialog(action: string, element: Institution) {
+    if (action == 'Add') {
+      let dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      const dialogRef = this.dialog.open(CreateInstitutionComponent, dialogConfig);
+      dialogRef.componentInstance.institutionCreated.subscribe((data) => {
+        this.onInstitutionCreated(data);
+      });
+    }
+
+    if (action == 'Edit') {
+      alert("Edit Institution with ID = " + element.Id);
+    }
+
+    if (action == 'Delete') {
+      alert("Delete Institution with ID = " + element.Id);
+    }
   }
 
   onInstitutionCreated(result: boolean) {
