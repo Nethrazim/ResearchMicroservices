@@ -19,6 +19,10 @@ export class IsAdminLoggedInGuard implements CanActivate {
       this.router.navigate(['']);
     }
 
+    if (this.store.Credentials.Role != 1) {
+      this.router.navigate(['']);
+    }
+
     return true;
   }
 }

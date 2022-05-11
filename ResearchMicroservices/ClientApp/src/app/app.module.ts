@@ -83,14 +83,13 @@ import { MatDialogModule } from '@angular/material/dialog';
       { path: 'register', component: CreatePageComponent },
       { path: 'test', component: TestComponent },
       { path: 'admin-home', component: AdminLandingPageComponent, canActivate: [IsAdminLoggedInGuard] },
-      { path: 'develop-admin-page', component: AdminLandingPageComponent },
-      { path: 'admin/myinstitution', component: AdminMyInstitutionPageComponent },
-      { path: 'admin/teachers', component: AdminTeacherPageComponent },
-      { path: 'admin/students', component: AdminStudentPageComponent },
-      { path: 'admin/classes',  component: AdminClassPageComponent },
-      { path: 'admin/grades',   component: AdminGradesPageComponent },
-      { path: 'admin/courses', component: AdminCoursesPageComponent },
-      { path: 'development', component: AdminMyInstitutionPageComponent}
+      { path: 'admin/myinstitution', component: AdminMyInstitutionPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'admin/teachers', component: AdminTeacherPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'admin/students', component: AdminStudentPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'admin/classes', component: AdminClassPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'admin/grades', component: AdminGradesPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'admin/courses', component: AdminCoursesPageComponent, canActivate: [IsAdminLoggedInGuard] },
+      { path: 'development', component: AdminMyInstitutionPageComponent, canActivate: [IsAdminLoggedInGuard] }
     ]),
     BrowserAnimationsModule
   ],
