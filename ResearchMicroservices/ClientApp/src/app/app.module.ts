@@ -38,6 +38,8 @@ import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-land
 /*Material UI*/
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateInstitutionComponent } from './components/create-institution/create-institution.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavMenuItemComponent,
     AdminManageInstitutionComponent,
     AdminManageAddressComponent,
-    AdminManageContactsComponent
+    AdminManageContactsComponent,
+    CreateInstitutionComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -71,6 +74,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -90,6 +94,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ]),
     BrowserAnimationsModule
   ],
+  entryComponents: [CreateInstitutionComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

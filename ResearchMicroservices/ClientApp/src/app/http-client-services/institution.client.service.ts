@@ -7,6 +7,7 @@ import { BaseResponse } from '../entitites/BaseResponse';
 import { ChangePasswordResponse } from '../entitites/responses/identity/ChangePasswordResponse';
 import { ApplicationStoreService } from '../services/application.store.service';
 import { GetByAdminIdResponse } from '../entitites/responses/institution/GetByAdminIdResponse';
+import { CreateInstitutionResponse } from '../entitites/responses/institution/CreateInstitutionResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,20 @@ export class InstitutionClientService {
 
 
   getByAdminId(systemUserId: string): Observable<GetByAdminIdResponse> {
-    return this.HttpClient.post<GetByAdminIdResponse>(this.Url + '/institution/getByAdminId', { SystemUserId: systemUserId });
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    }
+    return this.HttpClient.post<GetByAdminIdResponse>(this.Url + '/institution/getByAdminId', { AdminId: systemUserId }, httpOptions);
+  }
+
+  createInstitution(systemUserId: string, name: string): Observable<CreateInstitutionResponse> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    }
+    return this.HttpClient.post<CreateInstitutionResponse>(this.Url + '/institution/create', { AdminId: systemUserId, Name: name }, httpOptions);
   }
 }

@@ -37,9 +37,9 @@ namespace SO.BusinessLayer.Institution.Services
                 CreatedDate = now,
                 UpdatedDate = now,
             }));
-
             await Repository.SaveChanges();
-            return entity;
+
+            return Mapper.Map<InstitutionDTO>(await Repository.GetByAdminId(adminId));
         }
 
         public async Task<InstitutionDTO> GetByAdminId(Guid adminId)

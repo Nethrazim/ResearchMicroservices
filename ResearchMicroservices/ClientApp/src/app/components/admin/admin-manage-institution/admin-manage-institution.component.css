@@ -1,0 +1,18 @@
+.app-admin-manage-institution {
+    position:relative;
+    top: 10px;
+}
+.app-admin-manage-institution .mat-header-cell {
+  width: 300px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.action-btn {
+    color:cadetblue;
+}
+
+.add-btn {
+  border:0;
+  background-color: transparent;
+}

@@ -27,7 +27,10 @@ namespace SO.API
             services.AddSingleton(Configuration);
             services.AddSwaggerGen();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddMvc().AddNewtonsoftJson(config => { 
+                config.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+                config.UseMemberCasing();
+            });
             services.AddCors(options => {
                 options.AddPolicy(name: "AllowedSpecificOrigins",
                     policy =>

@@ -34,11 +34,16 @@ export class LoginComponent implements OnInit {
   get getPassword() { return this.loginFormGroup.get('fcPassword').value; }
 
   get validateUsername() {
-      return (this.loginFormGroup.controls.fcUsername.invalid && (this.loginFormGroup.controls.fcUsername.dirty || this.loginFormGroup.controls.fcUsername.touched))
+    return (
+      this.loginFormGroup.controls.fcUsername.invalid
+      && (this.loginFormGroup.controls.fcUsername.dirty
+        || this.loginFormGroup.controls.fcUsername.touched))
   }
 
   get validatePassword() {
-    return (this.loginFormGroup.controls.fcPassword.invalid && (this.loginFormGroup.controls.fcPassword.dirty || this.loginFormGroup.controls.fcPassword.touched))
+    return (this.loginFormGroup.controls.fcPassword.invalid
+      && (this.loginFormGroup.controls.fcPassword.dirty
+        || this.loginFormGroup.controls.fcPassword.touched))
   }
 
   onSubmit() {

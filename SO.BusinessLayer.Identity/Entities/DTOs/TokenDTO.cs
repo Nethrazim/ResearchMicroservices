@@ -22,5 +22,8 @@ namespace SO.BusinessLayer.Identity.Entities.DTOs
 
         [JsonProperty("Role")]
         public UserRoles Role { get; set; }
+
+        [JsonProperty("SystemUserId")]
+        public Guid SystemUserId { get; set; }
     }
 }

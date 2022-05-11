@@ -1,5 +1,4 @@
 import { EntityResponse } from "../../EntityResponse";
-import { Token } from "../../Token";
 
 export class Institution {
   Id: number;

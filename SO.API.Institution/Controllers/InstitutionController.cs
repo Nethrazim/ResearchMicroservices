@@ -15,6 +15,7 @@ namespace SO.API.Institution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+ 
     public class InstitutionController : ControllerBase
     {
         private readonly ILogger<InstitutionController> _logger;
@@ -31,7 +32,7 @@ namespace SO.API.Institution.Controllers
 
         [HttpPost]
         [Route("institution/create")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<CreateInstitutionResponse> Create(CreateInstitutionRequest request)
         {
             CreateInstitutionResponse response = new CreateInstitutionResponse();
@@ -41,7 +42,7 @@ namespace SO.API.Institution.Controllers
 
         [HttpPost]
         [Route("institution/getByAdminId")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public async Task<GetInstitutionByAdminIdResponse> GetByAdminId(GetInstitutionByAdminIdRequest request)
         {
             GetInstitutionByAdminIdResponse response = new GetInstitutionByAdminIdResponse();

@@ -1,3 +1,36 @@
-<div class="app-admin-manage-institution">
-    
+<div class="app-admin-manage-institution center container">
+  <div *ngIf="!hasInstitution">
+    <button #add_institution_btn (click)="onOpenDialog('Add',add_institution_btn)" class="add-btn">
+      <i class="bi bi-clipboard-plus fa-lg"></i>
+    </button>
+  </div>
+  <table mat-table [dataSource]="institutions" class="mat-elevation-z8">
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="IsActive">
+      <th mat-header-cell *matHeaderCellDef>Is Active</th>
+      <td mat-cell *matCellDef="let element">
+        <i *ngIf="element.IsActive" class="bi bi-check2"></i>
+        <i *ngIf="!element.IsActive" class="bi bi-stopwatch"></i>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="UpdatedDate">
+      <th mat-header-cell *matHeaderCellDef>Updated Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.UpdatedDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="CreatedDate">
+      <th mat-header-cell *matHeaderCellDef>Created Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.CreatedDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element" class="action-link">
+        <a class="action-btn" (click)="onOpenDialog('Delete', element)">Edit</a>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

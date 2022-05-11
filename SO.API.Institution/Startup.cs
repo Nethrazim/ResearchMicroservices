@@ -1,4 +1,5 @@
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using SO.API.Institution.Messaging.Consumers;
 using SO.BusinessLayer.Institution.Services;
 using SO.BusinessLayer.Messaging.Events;
@@ -16,6 +18,7 @@ using SO.DataLayer.Institution.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SO.API.Institution
@@ -39,6 +42,22 @@ namespace SO.API.Institution
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<UserChangedConsumer>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdasdasdadsadasdsaasdasdsadasasdasd".ToCharArray())),
+                        ValidateAudience = true,
+                        ValidAudience = "ResearchMicroservices",
+                        ValidateIssuer = true,
+                        ValidIssuer = "ResearchMicroservices",
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
 
             AddBaseServices(services);
 
