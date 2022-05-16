@@ -37,5 +37,10 @@ namespace SO.BusinessLayer.Services
         {
             return Task.FromResult(Mapper.Map<TEntityDTO>(Repository.Get(id)));
         }
+
+        public async Task<TEntityDTO> UpdateAsync(TEntityDTO entity)
+        {
+            return Mapper.Map<TEntityDTO>(await Repository.UpdateAsync(Mapper.Map<TEntity>(entity)));
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace SO.BusinessLayer.Institution.Services
         Task<InstitutionDTO> GetByName(string name);
         Task<InstitutionDTO> GetByAdminId(Guid adminId);
         Task<bool> DeleteAsync(int institutionId);
+        Task<InstitutionDTO> UpdateAsync(int institutionId, string name);
     }
 }

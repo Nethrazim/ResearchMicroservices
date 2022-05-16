@@ -19,7 +19,9 @@ namespace SO.DataLayer.Repositories
 
         public T Get(Tkey id)
         {
-            return _dbContext.Set<T>().Find(id);
+            var entity = _dbContext.Set<T>().Find(id);
+            _dbContext.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public async Task<T> CreateAsync(T entity)

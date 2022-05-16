@@ -64,7 +64,22 @@ namespace SO.BusinessLayer.Institution.Services
             }
 
             return await base.DeleteAsync(institutionId);
-            
+        }
+
+
+
+        public async Task<InstitutionDTO> UpdateAsync(int institutionId, string name)
+        {
+            InstitutionDTO institution = await this.GetById(institutionId);
+            if (institution == null)
+            {
+                ResponseHelper.ReturnNotFound("Institution not found");
+            }
+
+            institution.Name = name;    
+            var entity = await base.UpdateAsync(institution);
+            await this.Repository.SaveChanges();
+            return entity;
         }
     }
 

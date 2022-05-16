@@ -15,7 +15,7 @@ namespace SO.API.Institution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
- 
+
     public class InstitutionController : ControllerBase
     {
         private readonly ILogger<InstitutionController> _logger;
@@ -33,7 +33,7 @@ namespace SO.API.Institution.Controllers
         [HttpPost]
         [Route("institution/create")]
         [Authorize(Roles = "Admin")]
-        public async Task<CreateInstitutionResponse> Create(CreateInstitutionRequest request)
+        public async Task<CreateInstitutionResponse> CreateAsync(CreateInstitutionRequest request)
         {
             CreateInstitutionResponse response = new CreateInstitutionResponse();
             response.Entity = await InstitutionService.CreateInstitutionAsync(request.Name, request.AdminId);
@@ -43,14 +43,26 @@ namespace SO.API.Institution.Controllers
         [HttpPost]
         [Route("institution/getByAdminId")]
         [Authorize(Roles = "Admin")]
-        public async Task<GetInstitutionByAdminIdResponse> GetByAdminId(GetInstitutionByAdminIdRequest request)
+        public async Task<GetInstitutionByAdminIdResponse> GetByAdminIdAsync(GetInstitutionByAdminIdRequest request)
         {
             GetInstitutionByAdminIdResponse response = new GetInstitutionByAdminIdResponse();
             response.Entity = await InstitutionService.GetByAdminId(request.AdminId);
             return response;
-            
+
         }
 
+        [HttpPost]
+        [Route("institution/update")]
+        [Authorize(Roles = "Admin")]
+        public async Task<UpdateInstitutionResponse> UpdateAsync(UpdateInstitutionRequest request)
+        {
+            UpdateInstitutionResponse response = new UpdateInstitutionResponse()
+            {
+                Entity = await InstitutionService.UpdateAsync(request.InstitutionId, request.Name),
+                Message = "Institution updated"
+            };
+            return response;
+        }
 
         [HttpDelete]
         [Route("institution/delete")]
