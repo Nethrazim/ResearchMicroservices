@@ -1,7 +1,7 @@
 <div class="app-admin-manage-institution center container">
   <div *ngIf="!hasInstitution">
     <button #add_institution_btn (click)="onOpenDialog('Add',add_institution_btn)" class="add-btn">
-      <i class="bi bi-clipboard-plus fa-lg"></i>
+      <i class="bi bi-clipboard-plus fa-lg" style="font-size:24px;"></i>
     </button>
   </div>
   <table mat-table [dataSource]="institutions" class="mat-elevation-z8">

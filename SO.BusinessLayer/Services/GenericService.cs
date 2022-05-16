@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using SO.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,20 @@ using System.Threading.Tasks;
 
 namespace SO.BusinessLayer.Services
 {
-    public class GenericService<TRepository, TEntity, TKey> where TRepository : IGenericRepository<TEntity, TKey> where TEntity : class where TKey : struct
+    public class GenericService<TRepository, TEntityDTO, TEntity, TKey> 
+        where TRepository : IGenericRepository<TEntity, TKey> 
+        where TEntityDTO : class
+        where TEntity: class
+        where TKey : struct
     {
+        public IMapper Mapper;
         public TRepository Repository { get; set; }
         public IConfiguration Configuration { get; set; }
-        public GenericService(TRepository repository, IConfiguration configuration)
+        public GenericService(TRepository repository, IConfiguration configuration, IMapper mapper)
         {
             Repository = repository;
             Configuration = configuration;
+            Mapper = mapper;
         }
 
         public async Task<bool> DeleteAsync(TKey id)
@@ -24,6 +31,11 @@ namespace SO.BusinessLayer.Services
             bool result = await Repository.DeleteAsync(entity);
             await Repository.SaveChanges();
             return result;
+        }
+
+        public Task<TEntityDTO> GetById(TKey id)
+        {
+            return Task.FromResult(Mapper.Map<TEntityDTO>(Repository.Get(id)));
         }
     }
 }

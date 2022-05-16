@@ -50,5 +50,20 @@ namespace SO.API.Institution.Controllers
             return response;
             
         }
+
+
+        [HttpDelete]
+        [Route("institution/delete")]
+        [Authorize(Roles = "Admin")]
+        public async Task<DeleteInstitutionResponse> MarkInstitutionAsInactive(DeleteInstitutionRequest request)
+        {
+            DeleteInstitutionResponse response = new DeleteInstitutionResponse()
+            {
+                Value = await InstitutionService.DeleteAsync(request.InstitutionId),
+                Message = "Institution has been deleted"
+            };
+
+            return response;
+        }
     }
 }

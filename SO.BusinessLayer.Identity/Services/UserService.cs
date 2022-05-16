@@ -19,18 +19,16 @@ using SO.BusinessLayer.Messaging.Events;
 
 namespace SO.BusinessLayer.Identity.Services
 {
-    public class UserService : GenericService<IUserRepository, User, int>, IUserService
+    public class UserService : GenericService<IUserRepository, UserDTO, User, int>, IUserService
     {
-        private IMapper Mapper;
         private readonly IUserPublisher UserPublisher;
         private readonly IEvent2Publisher Event2Publisher;
         public UserService(IUserRepository userRepository, 
             IUserPublisher userPublisher,
             IEvent2Publisher eventPublisher,
             IMapper mapper, 
-            IConfiguration configuration): base(userRepository, configuration)
+            IConfiguration configuration): base(userRepository, configuration, mapper)
         {
-            Mapper = mapper;
             UserPublisher = userPublisher;
             Event2Publisher = eventPublisher;
         }

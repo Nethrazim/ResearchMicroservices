@@ -12,13 +12,11 @@ using SO.API.Helpers;
 
 namespace SO.BusinessLayer.Institution.Services
 {
-    public class UserService : GenericService<IUserRepository, SO.DataLayer.Institution.Model.User,int>, IUserService
+    public class UserService : GenericService<IUserRepository, UserDTO,SO.DataLayer.Institution.Model.User,int>, IUserService
     {
-        private IMapper Mapper;
         public UserService(IUserRepository repository, IMapper mapper, IConfiguration configuration)
-            : base(repository, configuration)
+            : base(repository, configuration, mapper)
         {
-            Mapper = mapper;
         }
 
         public async Task<UserDTO> PatchAsync(UserDTO user)

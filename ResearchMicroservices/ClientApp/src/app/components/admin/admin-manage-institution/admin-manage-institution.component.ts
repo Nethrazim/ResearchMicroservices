@@ -38,7 +38,6 @@ export class AdminManageInstitutionComponent implements OnInit {
           let errorResponse = error.error as BaseResponse;
           if (errorResponse.StatusCode = 404) {
             this.hasInstitution = false;
-            alert(errorResponse.Message);
           }
         }
       )

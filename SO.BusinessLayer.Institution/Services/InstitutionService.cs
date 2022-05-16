@@ -12,13 +12,11 @@ using SO.API.Helpers;
 
 namespace SO.BusinessLayer.Institution.Services
 {
-    public class InstitutionService : GenericService<IInstitutionRepository, SO.DataLayer.Institution.Model.Institution,int>, IInstitutionService
+    public class InstitutionService : GenericService<IInstitutionRepository, InstitutionDTO, DataLayer.Institution.Model.Institution, int>, IInstitutionService
     {
-        private IMapper Mapper;
         public InstitutionService(IInstitutionRepository institutionRepository, IMapper mapper, IConfiguration configuration)
-            : base(institutionRepository, configuration)
+            : base(institutionRepository, configuration, mapper)
         {
-            Mapper = mapper;
         }
 
         public async Task<InstitutionDTO> CreateInstitutionAsync(string name, Guid adminId)
@@ -56,6 +54,17 @@ namespace SO.BusinessLayer.Institution.Services
         public async Task<InstitutionDTO> GetByName(string name)
         {
             return Mapper.Map<InstitutionDTO>(await Repository.GetByName(name));
+        }
+
+        public async Task<bool> DeleteAsync(int institutionId)
+        {
+            if (await this.GetById(institutionId) == null)
+            {
+                ResponseHelper.ReturnNotFound("Institution not found");
+            }
+
+            return await base.DeleteAsync(institutionId);
+            
         }
     }
 

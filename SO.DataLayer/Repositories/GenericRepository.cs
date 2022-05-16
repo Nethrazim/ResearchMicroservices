@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SO.DataLayer.Repositories
 {
-    public class GenericRepository<T,Tkey> : IGenericRepository<T, Tkey> where T : class
+    public class GenericRepository<T,Tkey> : IGenericRepository<T, Tkey>
+        where T : class
     {
         public DbContext _dbContext { get; set; }
 
@@ -26,9 +28,10 @@ namespace SO.DataLayer.Repositories
             return entity;
         }
 
-        public Task<List<T>> CreateAsync(IEnumerable<T> entities)
+        public async Task<List<T>> CreateAsync(List<T> entities)
         {
-            throw new NotImplementedException();
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+            return entities;
         }
 
         public async Task<bool> DeleteAsync(T entity)
@@ -41,11 +44,6 @@ namespace SO.DataLayer.Repositories
         {
             _dbContext.Set<T>().Update(entity);
             return entity;
-        }
-
-        public Task<List<T>> UpdateAsync(IEnumerable<T> entities)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task SaveChanges()

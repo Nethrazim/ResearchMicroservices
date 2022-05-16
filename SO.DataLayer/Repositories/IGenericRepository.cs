@@ -11,10 +11,9 @@ namespace SO.DataLayer.Repositories
         DbContext _dbContext { get; set; }
         T Get(TKey id);
         Task<T> CreateAsync(T entity);
-        Task<List<T>> CreateAsync(IEnumerable<T> entities);
+        Task<List<T>> CreateAsync(List<T> entities);
         Task<bool> DeleteAsync(T id);
         Task<T> UpdateAsync(T entity);
-        Task<List<T>> UpdateAsync(IEnumerable<T> entities);
         Task SaveChanges();
     }
 }
