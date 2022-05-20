@@ -29,7 +29,6 @@ export class AdminMyInstitutionPageComponent implements OnInit {
   Display(slug: string) {
     this.displayMenu = false;
     this.ResetDisplayOptions();
-    alert(slug);
     switch (slug) {
       case "manage-institution":
         this.displayManageInstitution = true;
