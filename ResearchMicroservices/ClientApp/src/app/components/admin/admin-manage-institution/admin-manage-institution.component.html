@@ -1,6 +1,6 @@
 <div class="app-admin-manage-institution center container">
   <div *ngIf="!hasInstitution">
-    <button #add_institution_btn (click)="onOpenDialog('Add',add_institution_btn)" class="add-btn">
+    <button (click)="onOpenDialog('Add')" class="add-btn">
       <i class="bi bi-clipboard-plus fa-lg" style="font-size:24px;"></i>
     </button>
   </div>

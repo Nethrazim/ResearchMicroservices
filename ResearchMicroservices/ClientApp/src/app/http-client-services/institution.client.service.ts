@@ -8,6 +8,8 @@ import { ChangePasswordResponse } from '../entitites/responses/identity/ChangePa
 import { ApplicationStoreService } from '../services/application.store.service';
 import { GetByAdminIdResponse } from '../entitites/responses/institution/GetByAdminIdResponse';
 import { CreateInstitutionResponse } from '../entitites/responses/institution/CreateInstitutionResponse';
+import { EntityResponse } from '../entitites/EntityResponse';
+import { Institution } from '../entitites/responses/institution/Institution';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +21,12 @@ export class InstitutionClientService {
     this.Url = Url;
   }
 
-
-
   getByAdminId(systemUserId: string): Observable<GetByAdminIdResponse> {
     let httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.store.Credentials.TokenValue}`
       })
-    }
+    };
     return this.HttpClient.post<GetByAdminIdResponse>(this.Url + '/institution/getByAdminId', { AdminId: systemUserId }, httpOptions);
   }
 
@@ -35,7 +35,17 @@ export class InstitutionClientService {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.store.Credentials.TokenValue}`
       })
-    }
+    };
     return this.HttpClient.post<CreateInstitutionResponse>(this.Url + '/institution/create', { AdminId: systemUserId, Name: name }, httpOptions);
+  }
+
+  updateInstitution(institutionId: number, name: string): Observable<EntityResponse<Institution>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.post<EntityResponse<Institution>>(this.Url + '/institution/update', { InstitutionId: institutionId, Name: name }, httpOptions);
   }
 }

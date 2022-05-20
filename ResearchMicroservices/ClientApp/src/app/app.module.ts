@@ -38,8 +38,9 @@ import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-land
 /*Material UI*/
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateInstitutionComponent } from './components/create-institution/create-institution.component';
+import { CreateInstitutionComponent } from './components/admin/create-institution/create-institution.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UpdateInstitutionComponent } from './components/admin/update-institution/update-institution.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AdminManageAddressComponent,
     AdminManageContactsComponent,
     CreateInstitutionComponent,
+    UpdateInstitutionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -93,7 +95,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ]),
     BrowserAnimationsModule
   ],
-  entryComponents: [CreateInstitutionComponent],
+  entryComponents: [CreateInstitutionComponent, UpdateInstitutionComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

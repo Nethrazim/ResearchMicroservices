@@ -4,7 +4,8 @@ import { Institution } from '../../../entitites/responses/institution/Institutio
 import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
 import { ApplicationStoreService } from '../../../services/application.store.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateInstitutionComponent } from '../../create-institution/create-institution.component';
+import { CreateInstitutionComponent } from '../create-institution/create-institution.component';
+import { UpdateInstitutionComponent } from '../update-institution/update-institution.component';
 
 @Component({
   selector: 'app-admin-manage-institution',
@@ -47,14 +48,21 @@ export class AdminManageInstitutionComponent implements OnInit {
     if (action == 'Add') {
       let dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
-      const dialogRef = this.dialog.open(CreateInstitutionComponent, dialogConfig);
+      let dialogRef = this.dialog.open(CreateInstitutionComponent, dialogConfig);
       dialogRef.componentInstance.institutionCreated.subscribe((data) => {
         this.onInstitutionCreated(data);
       });
     }
 
     if (action == 'Edit') {
-      alert("Edit Institution with ID = " + element.Id);
+      let dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      let dialogRef = this.dialog.open(UpdateInstitutionComponent, dialogConfig);
+      dialogRef.componentInstance.institutionName = element.Name;
+      dialogRef.componentInstance.institutionId = element.Id;
+      dialogRef.componentInstance.institutionUpdated.subscribe((data) => {
+        this.onInstitutionUpdated(data);
+      });
     }
 
     if (action == 'Delete') {
@@ -62,13 +70,22 @@ export class AdminManageInstitutionComponent implements OnInit {
     }
   }
 
+  onInstitutionUpdated(result: boolean) {
+    if (result) {
+      this.getInstitution();
+    }
+    
+    this.dialog.closeAll();
+  }
+
   onInstitutionCreated(result: boolean) {
     if (result) {
       this.getInstitution();
-      this.dialog.closeAll();
     }
     else {
       alert("Institution NOT CREATED");
     }
+
+    this.dialog.closeAll();
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { InstitutionClientService } from '../../http-client-services/institution.client.service';
-import { ApplicationStoreService } from '../../services/application.store.service';
+import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
+import { ApplicationStoreService } from '../../../services/application.store.service';
 
 @Component({
   selector: 'app-create-institution',

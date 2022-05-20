@@ -1,0 +1,14 @@
+<div class="center">
+  <form [formGroup]="institutionFormGroup" (ngSubmit)="onSubmit()">
+    <input id="name" placeholder="Institution name..." formControlName="fcName" />
+    <br />
+    <div *ngIf="validateName">
+      <span class="app-alert">Name is invalid.</span>
+    </div>
+    <br />
+    <button type="submit" class="center" [disabled]="!institutionFormGroup.valid">
+      UPDATE
+    </button>
+  </form>
+</div>
+
