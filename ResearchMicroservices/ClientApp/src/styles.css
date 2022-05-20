@@ -47,9 +47,10 @@ code {
   cursor: not-allowed;
 }
 
-.page-content{
-    box-shadow: 0 2px 5px black;
-    height:700px;
+.page-content {
+  box-shadow: 0 2px 5px black;
+  height: 700px;
+  background-color: slategray;
 }
 
 .app-menu-centered-wrapper {
@@ -58,9 +59,9 @@ code {
 }
 
 .page-title {
-  color: deepskyblue;
+  color: white;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 400;
   text-decoration: underline;
   padding-left: 10px;
 }

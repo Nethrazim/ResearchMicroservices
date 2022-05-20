@@ -1,18 +1,18 @@
 #app-admin-nav-menu {
   position: relative;
   margin: auto;
-  background-color: deepskyblue;
+  background-color: lightslategray;
   box-shadow: 0 6px 6px #ccc;
   padding: 10px;
   /*border: 1px solid orangered;*/
 }
 
-#app-admin-nav-menu a {
+  #app-admin-nav-menu a {
     position: relative;
     margin: auto;
     color: white;
-    font-weight:bold;
-}
+    /*font-weight: bold;*/
+  }
 
 #app-admin-nav-menu ul {
   list-style: none;

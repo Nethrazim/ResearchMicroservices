@@ -7,8 +7,13 @@
     <div class="col-10">
       <div class="container-fluid">
         <div class="page-content">
-          <div class="page-title-wrapper">
-            <span class="page-title">{{pageTitle}}</span>
+          <div>
+            <div class="page-title-wrapper" style="float:left;">
+              <span class="page-title">/{{pageTitle}}</span>
+            </div>
+            <div *ngIf="!displayMenu" style="float:right;padding-right:10px;">
+              <span class="page-title" (click)="Back()">Back</span>
+            </div>
           </div>
           <div *ngIf="displayMenu" class="app-menu-centered-wrapper">
             <div class="grid-container">

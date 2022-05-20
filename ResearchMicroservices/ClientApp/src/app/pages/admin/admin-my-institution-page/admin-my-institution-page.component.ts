@@ -20,6 +20,10 @@ export class AdminMyInstitutionPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  Back() {
+    this.ResetDisplayOptions();
+    this.displayMenu = true;
+  }
   ResetDisplayOptions() {
     this.displayManageInstitution = false;
     this.displayManageContacts = false;

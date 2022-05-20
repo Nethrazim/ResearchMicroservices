@@ -1,7 +1,10 @@
 <div class="app-admin-manage-institution center container">
+  <div>
+    <h5 style="color:white;">Institutions</h5>
+  </div>
   <div *ngIf="!hasInstitution">
     <button (click)="onOpenDialog('Add')" class="add-btn">
-      <i class="bi bi-clipboard-plus fa-lg" style="font-size:24px;"></i>
+      <i class="bi bi-clipboard-plus fa-lg" style="font-size: 24px; color: greenyellow;"></i>
     </button>
   </div>
   <table mat-table [dataSource]="institutions" class="mat-elevation-z8">
@@ -12,7 +15,7 @@
     <ng-container matColumnDef="IsActive">
       <th mat-header-cell *matHeaderCellDef>Is Active</th>
       <td mat-cell *matCellDef="let element">
-        <i *ngIf="element.IsActive" class="bi bi-check2"></i>
+        <i *ngIf="element.IsActive" class="bi bi-check2" style="font-size:24px;color:darkgreen;"></i>
         <i *ngIf="!element.IsActive" class="bi bi-stopwatch"></i>
       </td>
     </ng-container>
