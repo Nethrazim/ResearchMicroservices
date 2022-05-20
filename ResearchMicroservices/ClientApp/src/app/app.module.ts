@@ -41,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateInstitutionComponent } from './components/admin/create-institution/create-institution.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateInstitutionComponent } from './components/admin/update-institution/update-institution.component';
+import { DeleteInstitutionComponent } from './components/admin/delete-institution/delete-institution.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { UpdateInstitutionComponent } from './components/admin/update-institutio
     AdminManageAddressComponent,
     AdminManageContactsComponent,
     CreateInstitutionComponent,
-    UpdateInstitutionComponent
+    UpdateInstitutionComponent,
+    DeleteInstitutionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -95,7 +97,7 @@ import { UpdateInstitutionComponent } from './components/admin/update-institutio
     ]),
     BrowserAnimationsModule
   ],
-  entryComponents: [CreateInstitutionComponent, UpdateInstitutionComponent],
+  entryComponents: [CreateInstitutionComponent, UpdateInstitutionComponent, DeleteInstitutionComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -10,6 +10,7 @@ import { GetByAdminIdResponse } from '../entitites/responses/institution/GetByAd
 import { CreateInstitutionResponse } from '../entitites/responses/institution/CreateInstitutionResponse';
 import { EntityResponse } from '../entitites/EntityResponse';
 import { Institution } from '../entitites/responses/institution/Institution';
+import { ValueResponse } from '../entitites/ValueResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,16 @@ export class InstitutionClientService {
     };
 
     return this.HttpClient.post<EntityResponse<Institution>>(this.Url + '/institution/update', { InstitutionId: institutionId, Name: name }, httpOptions);
+  }
+
+  deleteInstitution(institutionId: number): Observable<ValueResponse<boolean>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      }),
+      body: {InstitutionId: institutionId}
+    };
+
+    return this.HttpClient.delete<ValueResponse<boolean>>(this.Url + '/institution/delete', httpOptions);  
   }
 }

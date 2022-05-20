@@ -6,6 +6,7 @@ import { ApplicationStoreService } from '../../../services/application.store.ser
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateInstitutionComponent } from '../create-institution/create-institution.component';
 import { UpdateInstitutionComponent } from '../update-institution/update-institution.component';
+import { DeleteInstitutionComponent } from '../delete-institution/delete-institution.component';
 
 @Component({
   selector: 'app-admin-manage-institution',
@@ -39,6 +40,7 @@ export class AdminManageInstitutionComponent implements OnInit {
           let errorResponse = error.error as BaseResponse;
           if (errorResponse.StatusCode = 404) {
             this.hasInstitution = false;
+            this.institutions = [];
           }
         }
       )
@@ -66,7 +68,13 @@ export class AdminManageInstitutionComponent implements OnInit {
     }
 
     if (action == 'Delete') {
-      alert("Delete Institution with ID = " + element.Id);
+      let dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      let dialogRef = this.dialog.open(DeleteInstitutionComponent, dialogConfig);
+      dialogRef.componentInstance.institutionId = element.Id;
+      dialogRef.componentInstance.deleteInstitution.subscribe((data) => {
+        this.onInstitutionUpdated(data);
+      });
     }
   }
 
