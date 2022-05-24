@@ -19,14 +19,18 @@ namespace SO.API.Institution.Controllers
     public class InstitutionController : ControllerBase
     {
         private readonly ILogger<InstitutionController> _logger;
-        private IInstitutionService InstitutionService { get; set; }
+        private IInstitutionService InstitutionService { get; }
+        private IAddressService AddressService { get; }
         private IMapper Mapper;
 
-        public InstitutionController(IInstitutionService institutionService, IMapper mapper, ILogger<InstitutionController> logger)
+        public InstitutionController(IInstitutionService institutionService, 
+            IAddressService addressService,
+            IMapper mapper, ILogger<InstitutionController> logger)
         {
             _logger = logger;
             Mapper = mapper;
             InstitutionService = institutionService;
+            AddressService = addressService;
         }
 
 
@@ -75,6 +79,18 @@ namespace SO.API.Institution.Controllers
                 Message = "Institution has been deleted"
             };
 
+            return response;
+        }
+
+        [HttpPost]
+        [Route("address/create")]
+        [Authorize(Roles = "Admin")]
+        public async Task<CreateAddressResponse> CreateInstitutionAddress(CreateAddressRequest request)
+        {
+            CreateAddressResponse response = new CreateAddressResponse()
+            {
+                Entity = await AddressService.CreateAsync(Mapper.Map<AddressDTO>(request))
+            };
             return response;
         }
     }

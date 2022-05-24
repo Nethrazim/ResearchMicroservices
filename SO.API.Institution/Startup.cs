@@ -37,10 +37,16 @@ namespace SO.API.Institution
             services.AddControllers();
 
             services.AddScoped<DbContext, InstitutionContext>();
+
             services.AddScoped<IInstitutionRepository, InstitutionRepository>();
-            services.AddScoped<IInstitutionService, InstitutionService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+
+            services.AddScoped<IInstitutionService, InstitutionService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAddressService, AddressService>();
+
+
             services.AddScoped<UserChangedConsumer>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

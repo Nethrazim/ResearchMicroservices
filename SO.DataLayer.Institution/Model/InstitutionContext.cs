@@ -19,6 +19,7 @@ namespace SO.DataLayer.Institution.Model
         {
         }
 
+        public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Institution> Institution { get; set; }
         public virtual DbSet<User> User { get; set; }
 
@@ -33,6 +34,46 @@ namespace SO.DataLayer.Institution.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.HasKey(e => e.InstitutionId)
+                    .HasName("PK__Address__8DF6B6AD3102526C");
+
+                entity.Property(e => e.InstitutionId).ValueGeneratedNever();
+
+                entity.Property(e => e.Address1)
+                    .IsRequired()
+                    .HasColumnName("Address")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Address2)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.State)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Zip)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Institution)
+                    .WithOne(p => p.Address)
+                    .HasForeignKey<Address>(d => d.InstitutionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AddressInstitution_InstitutionId");
+            });
+
             modelBuilder.Entity<Institution>(entity =>
             {
                 entity.HasIndex(e => e.Name)

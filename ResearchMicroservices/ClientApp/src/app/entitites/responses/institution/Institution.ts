@@ -1,5 +1,3 @@
-import { EntityResponse } from "../../EntityResponse";
-
 export class Institution {
   Id: number;
   Name: string;

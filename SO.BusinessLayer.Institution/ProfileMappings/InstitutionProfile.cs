@@ -14,6 +14,8 @@ namespace SO.BusinessLayer.Institution.ProfileMappings
                 .ReverseMap();
             CreateMap<UserDTO, SO.DataLayer.Institution.Model.User>()
                 .ReverseMap();
+            CreateMap<AddressDTO, SO.DataLayer.Institution.Model.Address>()
+                .ReverseMap();
         }
     }
 }

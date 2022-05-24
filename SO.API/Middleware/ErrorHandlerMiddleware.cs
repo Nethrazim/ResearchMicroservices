@@ -60,7 +60,7 @@ namespace SO.API.Middleware
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 errorResponse = new ErrorResponse()
                 {
-                    Message = ex.Message,
+                    Message = ex.InnerException != null ? ex.InnerException.Message : ex.Message,
                     StatusCode = HttpStatusCode.InternalServerError,
                 };
 

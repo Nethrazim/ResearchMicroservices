@@ -42,5 +42,12 @@ namespace SO.BusinessLayer.Services
         {
             return Mapper.Map<TEntityDTO>(await Repository.UpdateAsync(Mapper.Map<TEntity>(entity)));
         }
+
+        public async Task<TEntityDTO> CreateAsync(TEntityDTO entity)
+        {
+            var result = Mapper.Map<TEntityDTO>(await Repository.CreateAsync(Mapper.Map<TEntity>(entity)));
+            await Repository.SaveChanges();
+            return result;
+        }
     }
 }

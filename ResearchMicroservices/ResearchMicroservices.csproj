@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\identity\ChangePasswordResponse.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\Address.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\CreateInstitutionResponse.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\GetByAdminIdResponse.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\Institution.ts" />

@@ -1,1 +1,1 @@
-{"version":3,"file":"GetByAdminIdResponse.js","sourceRoot":"","sources":["GetByAdminIdResponse.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;AAAA,uDAAsD;AAItD;IAA0C,wCAA2B;IAArE;;IACA,CAAC;IAAD,2BAAC;AAAD,CAAC,AADD,CAA0C,+BAAc,GACvD;AADY,oDAAoB"}
+{"version":3,"file":"CreateInstitutionResponse.js","sourceRoot":"","sources":["CreateInstitutionResponse.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;AAAA,uDAAsD;AAGtD;IAA+C,6CAA2B;IAA1E;;IACA,CAAC;IAAD,gCAAC;AAAD,CAAC,AADD,CAA+C,+BAAc,GAC5D;AADY,8DAAyB"}

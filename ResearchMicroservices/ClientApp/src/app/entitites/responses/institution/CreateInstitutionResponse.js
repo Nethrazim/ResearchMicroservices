@@ -15,14 +15,14 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetByAdminIdResponse = void 0;
+exports.CreateInstitutionResponse = void 0;
 var EntityResponse_1 = require("../../EntityResponse");
-var GetByAdminIdResponse = /** @class */ (function (_super) {
-    __extends(GetByAdminIdResponse, _super);
-    function GetByAdminIdResponse() {
+var CreateInstitutionResponse = /** @class */ (function (_super) {
+    __extends(CreateInstitutionResponse, _super);
+    function CreateInstitutionResponse() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    return GetByAdminIdResponse;
+    return CreateInstitutionResponse;
 }(EntityResponse_1.EntityResponse));
-exports.GetByAdminIdResponse = GetByAdminIdResponse;
-//# sourceMappingURL=GetByAdminIdResponse.js.map
+exports.CreateInstitutionResponse = CreateInstitutionResponse;
+//# sourceMappingURL=CreateInstitutionResponse.js.map

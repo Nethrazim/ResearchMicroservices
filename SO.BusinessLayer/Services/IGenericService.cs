@@ -14,5 +14,6 @@ namespace SO.BusinessLayer.Services
         Task<bool> DeleteAsync(TKey id);
         Task<TEntityDTO> GetById(TKey id);
         Task<TEntityDTO> UpdateAsync(TEntityDTO entity);
+        Task<TEntityDTO> CreateAsync(TEntityDTO entity);
     }
 }

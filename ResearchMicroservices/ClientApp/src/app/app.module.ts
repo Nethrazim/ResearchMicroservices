@@ -93,7 +93,7 @@ import { DeleteInstitutionComponent } from './components/admin/delete-institutio
       { path: 'admin/classes', component: AdminClassPageComponent, canActivate: [IsAdminLoggedInGuard] },
       { path: 'admin/grades', component: AdminGradesPageComponent, canActivate: [IsAdminLoggedInGuard] },
       { path: 'admin/courses', component: AdminCoursesPageComponent, canActivate: [IsAdminLoggedInGuard] },
-      { path: 'development', component: AdminMyInstitutionPageComponent, canActivate: [IsAdminLoggedInGuard] }
+      { path: 'development', component: AdminMyInstitutionPageComponent }
     ]),
     BrowserAnimationsModule
   ],
