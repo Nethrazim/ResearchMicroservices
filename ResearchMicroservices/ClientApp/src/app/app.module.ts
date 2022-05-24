@@ -19,29 +19,36 @@ import { CreateAccountComponent } from './components/create-account/create-accou
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminNavMenuComponent } from './components/admin/admin-nav-menu/admin-nav-menu.component';
+import { NavMenuItemComponent } from './components/admin/nav-menu-item/nav-menu-item.component';
+import { AdminManageInstitutionComponent } from './components/admin/admin-manage-institution/admin-manage-institution.component';
+import { AdminManageAddressComponent } from './components/admin/admin-manage-address/admin-manage-address.component';
+import { AdminManageContactsComponent } from './components/admin/admin-manage-contacts/admin-manage-contacts.component';
+import { UpdateInstitutionComponent } from './components/admin/update-institution/update-institution.component';
+import { DeleteInstitutionComponent } from './components/admin/delete-institution/delete-institution.component';
+import { CreateInstitutionComponent } from './components/admin/create-institution/create-institution.component';
+import { InstitutionCardComponent } from './components/admin/institution-card/institution-card.component';
+
+/*PAGES*/
 import { AdminMyInstitutionPageComponent } from './pages/admin/admin-my-institution-page/admin-my-institution-page.component';
 import { AdminTeacherPageComponent } from './pages/admin/admin-teacher-page/admin-teacher-page.component';
 import { AdminStudentPageComponent } from './pages/admin/admin-student-page/admin-student-page.component';
 import { AdminClassPageComponent } from './pages/admin/admin-class-page/admin-class-page.component';
 import { AdminGradesPageComponent } from './pages/admin/admin-grades-page/admin-grades-page.component';
 import { AdminCoursesPageComponent } from './pages/admin/admin-courses-page/admin-courses-page.component';
-import { NavMenuItemComponent } from './components/admin/nav-menu-item/nav-menu-item.component';
-import { AdminManageInstitutionComponent } from './components/admin/admin-manage-institution/admin-manage-institution.component';
-import { AdminManageAddressComponent } from './components/admin/admin-manage-address/admin-manage-address.component';
-import { AdminManageContactsComponent } from './components/admin/admin-manage-contacts/admin-manage-contacts.component';
-
-/*PAGES*/
-import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AdminLandingPageComponent } from './pages/admin-landing-page/admin-landing-page.component';
+
+
 
 /*Material UI*/
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateInstitutionComponent } from './components/admin/create-institution/create-institution.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
-import { UpdateInstitutionComponent } from './components/admin/update-institution/update-institution.component';
-import { DeleteInstitutionComponent } from './components/admin/delete-institution/delete-institution.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -70,7 +77,8 @@ import { DeleteInstitutionComponent } from './components/admin/delete-institutio
     AdminManageContactsComponent,
     CreateInstitutionComponent,
     UpdateInstitutionComponent,
-    DeleteInstitutionComponent
+    DeleteInstitutionComponent,
+    InstitutionCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -79,6 +87,9 @@ import { DeleteInstitutionComponent } from './components/admin/delete-institutio
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule,
+    MatCardModule,
+    MatDividerModule,
+    MatTabsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

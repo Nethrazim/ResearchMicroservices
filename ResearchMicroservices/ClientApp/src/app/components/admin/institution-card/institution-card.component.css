@@ -1,0 +1,23 @@
+.institution-card {
+  width: 250px;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.institution-card .details-lbl{
+  font-weight: 400;
+  font-size: 14px;
+  color:darkgray;
+}
+
+.institution-card button {
+  border: 0px;
+  padding: 5px;
+  color: white;
+  background-color: #5b6ab1;
+  outline: none;
+}
+
+.institution-card .cancelBtn{
+    margin-left: 10px;
+}
