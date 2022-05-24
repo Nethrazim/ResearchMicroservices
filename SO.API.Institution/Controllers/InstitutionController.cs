@@ -93,5 +93,20 @@ namespace SO.API.Institution.Controllers
             };
             return response;
         }
+
+        [HttpPost]
+        [Route("address/update")]
+        [Authorize(Roles = "Admin")]
+        public async Task<UpdateAddressResponse> UpdateInstitutionAddress(UpdateAddressRequest request)
+        {
+            UpdateAddressResponse response = new UpdateAddressResponse()
+            {
+                Entity = await AddressService.UpdateAsync(Mapper.Map<AddressDTO>(request))
+            };
+            return response;
+        }
+
+
+
     }
 }

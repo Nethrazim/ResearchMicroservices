@@ -9,6 +9,7 @@ namespace SO.API.Institution.Model.Profiles
         public InstitutionProfile()
         {
             CreateMap<CreateAddressRequest, AddressDTO>();
+            CreateMap<UpdateAddressRequest, AddressDTO>();
         }
     }
 }
