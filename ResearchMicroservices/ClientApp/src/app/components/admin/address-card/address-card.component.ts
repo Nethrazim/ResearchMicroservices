@@ -49,6 +49,9 @@ export class AddressCardComponent implements OnInit {
       else
         this.address1 = this.address2 = this.city = this.zip = this.state = "";
     }
+    else {
+      alert("No institution registered");
+    }
     
   }
 

@@ -6,7 +6,7 @@
 }
 
 .institution-card .card-content {
-  min-height: 150px;
+  min-height: 200px;
 }
 
 .institution-card .details-lbl{
@@ -32,5 +32,5 @@
 }
 .institution-card .mat-card-actions button {
   position: relative;
-  top: 50%;
+  top: 30%;
 }

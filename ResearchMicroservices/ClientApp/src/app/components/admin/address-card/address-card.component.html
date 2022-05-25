@@ -4,7 +4,7 @@
       <mat-card-subtitle></mat-card-subtitle>
     </div>
   </mat-card-header>
-  <mat-card-subtitle><i class="bi bi-building" style="font-size:26px;"></i>Address</mat-card-subtitle>
+  <mat-card-subtitle><i class="bi bi-pencil-square" style="font-size:26px;"></i>Address</mat-card-subtitle>
   <mat-card-content>
   </mat-card-content>
   <div class="add-grid-container card-content">
@@ -41,8 +41,8 @@
   </div>
   <mat-card-actions>
     <mat-divider inset></mat-divider>
-    <button *ngIf="institution && !isUpdatingAddress && hasAddress()" (click)="setUpdateAddressForm(true)" mat-button>EDIT</button>
-    <button *ngIf="institution && !hasAddress() && !isCreatingAddress" (click)="setCreateAddressForm(true)">ADD</button>
+    <button *ngIf="!isUpdatingAddress && hasAddress()" (click)="setUpdateAddressForm(true)" mat-button>EDIT</button>
+    <button *ngIf="!hasAddress() && !isCreatingAddress" (click)="setCreateAddressForm(true)">ADD</button>
     <button *ngIf="isCreatingAddress" matt-button (click)="createAddress()">Create</button>
     <button *ngIf="isUpdatingAddress" matt-button (click)="updateAddress()">Update</button>
     <button *ngIf="isCreatingAddress" class="cancelBtn" matt-button (click)="setCreateAddressForm(false)">Cancel</button>
