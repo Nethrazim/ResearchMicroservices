@@ -55,7 +55,7 @@ namespace SO.API.Institution.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("institution/update")]
         [Authorize(Roles = "Admin")]
         public async Task<UpdateInstitutionResponse> UpdateAsync(UpdateInstitutionRequest request)
@@ -94,7 +94,7 @@ namespace SO.API.Institution.Controllers
             return response;
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("address/update")]
         [Authorize(Roles = "Admin")]
         public async Task<UpdateAddressResponse> UpdateInstitutionAddress(UpdateAddressRequest request)

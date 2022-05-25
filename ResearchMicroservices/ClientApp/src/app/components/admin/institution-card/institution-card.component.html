@@ -11,24 +11,27 @@
     <div>
       <span class="details-lbl">Name</span>
       <br />
-      <span *ngIf="!isCreatingInstitution" class="value-lbl">{{getName()}}</span>
-      <input *ngIf="isCreatingInstitution" class="" value="{{institutionName}}"/>
+      <span *ngIf="!isCreatingInstitution && !isUpdatingInstitution" class="value-lbl">{{getName()}}</span>
+      <input *ngIf="isCreatingInstitution || isUpdatingInstitution" class="" [(ngModel)]="institutionName"/>
     </div>
-    <div *ngIf="!isCreatingInstitution">
+    <div *ngIf="!isCreatingInstitution && !isUpdatingInstitution">
       <span class="details-lbl">Is Active</span>
       <br />
-      <span *ngIf="!isCreatingInstitution" class="value-lbl">{{getIsActive()}}</span>
+      <span class="value-lbl">{{getIsActive()}}</span>
     </div>
-    <div *ngIf="!isCreatingInstitution">
+    <div *ngIf="!isCreatingInstitution && !isUpdatingInstitution">
       <span class="details-lbl">Creation Date</span>
       <br />
-      <span *ngIf="!isCreatingInstitution" class="value-lbl">{{getCreationDate()}}</span>
+      <span class="value-lbl">{{getCreationDate()}}</span>
     </div>
   </div>
   <mat-card-actions>
     <mat-divider inset></mat-divider>
-    <button *ngIf="hasInstitution" mat-button>EDIT</button>
-    <button *ngIf="!hasInstitution" matt-button (click)="setCreateInstitutionForm(true)">Create</button>
+    <button *ngIf="!isUpdatingInstitution && hasInstitution()" (click)="setUpdateInstitutionForm(true)" mat-button>EDIT</button>
+    <button *ngIf="!hasInstitution() && !isCreatingInstitution" (click)="setCreateInstitutionForm(true)">ADD</button>
+    <button *ngIf="isCreatingInstitution" matt-button (click)="createInstitution()">Create</button>
+    <button *ngIf="isUpdatingInstitution" matt-button (click)="updateInstitution()">Update</button>
     <button *ngIf="isCreatingInstitution" class="cancelBtn" matt-button (click)="setCreateInstitutionForm(false)">Cancel</button>
+    <button *ngIf="isUpdatingInstitution" class="cancelBtn" matt-button (click)="setUpdateInstitutionForm(false)">Cancel</button>
   </mat-card-actions>
 </mat-card>

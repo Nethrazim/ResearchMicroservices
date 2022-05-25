@@ -48,7 +48,7 @@ export class InstitutionClientService {
       })
     };
 
-    return this.HttpClient.post<EntityResponse<Institution>>(this.Url + '/institution/update', { InstitutionId: institutionId, Name: name }, httpOptions);
+    return this.HttpClient.put<EntityResponse<Institution>>(this.Url + '/institution/update', { InstitutionId: institutionId, Name: name }, httpOptions);
   }
 
   deleteInstitution(institutionId: number): Observable<ValueResponse<boolean>> {
@@ -70,5 +70,15 @@ export class InstitutionClientService {
     };
 
     return this.HttpClient.post<EntityResponse<Address>>(this.Url + '/address/create', { InstitutionId: institutionId, Address1: address1, Address2: address2, City:city, State:state, Zip: zip }, httpOptions);
+  }
+
+  updateAddress(institutionId: number, address1: string, address2: string, city: string, state: string, zip: string): Observable<EntityResponse<Address>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.put<EntityResponse<Address>>(this.Url + '/address/update', { InstitutionId: institutionId, Address1: address1, Address2: address2, City: city, State: state, Zip: zip }, httpOptions);
   }
 }
