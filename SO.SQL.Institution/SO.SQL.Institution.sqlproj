@@ -62,5 +62,6 @@
     <Build Include="Tables\Institution.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Address.sql" />
+    <Build Include="Tables\Contact.sql" />
   </ItemGroup>
 </Project>

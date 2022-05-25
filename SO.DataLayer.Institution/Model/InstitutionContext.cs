@@ -20,6 +20,7 @@ namespace SO.DataLayer.Institution.Model
         }
 
         public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<Institution> Institution { get; set; }
         public virtual DbSet<User> User { get; set; }
 
@@ -72,6 +73,45 @@ namespace SO.DataLayer.Institution.Model
                     .HasForeignKey<Address>(d => d.InstitutionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AddressInstitution_InstitutionId");
+            });
+
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasKey(e => e.InstitutionId)
+                    .HasName("PK__Contact__8DF6B6AD87D04542");
+
+                entity.Property(e => e.InstitutionId).ValueGeneratedNever();
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MiddleName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Institution)
+                    .WithOne(p => p.Contact)
+                    .HasForeignKey<Contact>(d => d.InstitutionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ContactInstitution_InstitutionId");
             });
 
             modelBuilder.Entity<Institution>(entity =>

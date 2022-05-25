@@ -17,5 +17,6 @@ namespace SO.DataLayer.Institution.Model
         public DateTime UpdatedDate { get; set; }
 
         public virtual Address Address { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }
