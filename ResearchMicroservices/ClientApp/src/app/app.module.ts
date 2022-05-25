@@ -28,6 +28,7 @@ import { DeleteInstitutionComponent } from './components/admin/delete-institutio
 import { CreateInstitutionComponent } from './components/admin/create-institution/create-institution.component';
 import { InstitutionCardComponent } from './components/admin/institution-card/institution-card.component';
 import { AddressCardComponent } from './components/admin/address-card/address-card.component';
+import { ContactCardComponent } from './components/admin/contact-card/contact-card.component';
 /*PAGES*/
 import { AdminMyInstitutionPageComponent } from './pages/admin/admin-my-institution-page/admin-my-institution-page.component';
 import { AdminTeacherPageComponent } from './pages/admin/admin-teacher-page/admin-teacher-page.component';
@@ -80,6 +81,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     DeleteInstitutionComponent,
     InstitutionCardComponent,
     AddressCardComponent,
+    ContactCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
