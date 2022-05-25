@@ -20,6 +20,17 @@ namespace SO.BusinessLayer.Institution.Services
             : base(repository, configuration, mapper)
         {
         }
+
+        public async Task<AddressDTO> GetByInstitutionId(int institutionId)
+        {
+            var institution = Mapper.Map<AddressDTO>(await Repository.GetByInstitutionId(institutionId));
+            if (institution == null)
+            {
+                ResponseHelper.ReturnNotFound("Address not found");
+            }
+
+            return institution;
+        }
     }
 
 }

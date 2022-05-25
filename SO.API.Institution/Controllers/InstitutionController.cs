@@ -44,10 +44,10 @@ namespace SO.API.Institution.Controllers
             return response;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("institution/getByAdminId")]
         [Authorize(Roles = "Admin")]
-        public async Task<GetInstitutionByAdminIdResponse> GetByAdminIdAsync(GetInstitutionByAdminIdRequest request)
+        public async Task<GetInstitutionByAdminIdResponse> GetInstitutionByAdminIdAsync([FromQuery] GetInstitutionByAdminIdRequest request)
         {
             GetInstitutionByAdminIdResponse response = new GetInstitutionByAdminIdResponse();
             response.Entity = await InstitutionService.GetByAdminId(request.AdminId);
@@ -106,7 +106,16 @@ namespace SO.API.Institution.Controllers
             return response;
         }
 
-
-
+        [HttpGet]
+        [Route("address/getByInstitutionId")]
+        [Authorize(Roles = "Admin")]
+        public async Task<GetAddressByInstitutionResponse> GetAddressByInstitutionId([FromQuery] GetAddressByInstitutionIdRequest request)
+        {
+            GetAddressByInstitutionResponse response = new GetAddressByInstitutionResponse()
+            {
+                Entity = await AddressService.GetByInstitutionId(request.InstitutionId)
+            };
+            return response;
+        }
     }
 }

@@ -29,7 +29,7 @@ export class InstitutionClientService {
         Authorization: `Bearer ${this.store.Credentials.TokenValue}`
       })
     };
-    return this.HttpClient.post<GetByAdminIdResponse>(this.Url + '/institution/getByAdminId', { AdminId: systemUserId }, httpOptions);
+    return this.HttpClient.get<GetByAdminIdResponse>(this.Url + '/institution/getByAdminId?AdminId=' + systemUserId, httpOptions);
   }
 
   createInstitution(systemUserId: string, name: string): Observable<CreateInstitutionResponse> {
@@ -80,5 +80,15 @@ export class InstitutionClientService {
     };
 
     return this.HttpClient.put<EntityResponse<Address>>(this.Url + '/address/update', { InstitutionId: institutionId, Address1: address1, Address2: address2, City: city, State: state, Zip: zip }, httpOptions);
+  }
+
+  getAddressByInstitutionId(institutionId: number): Observable<EntityResponse<Address>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.get<EntityResponse<Address>>(this.Url + '/address/getByInstitutionId?InstitutionId=' + institutionId, httpOptions);
   }
 }

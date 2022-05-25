@@ -9,5 +9,6 @@ namespace SO.BusinessLayer.Institution.Services
 {
     public interface IAddressService : IGenericService<AddressDTO, Address,int>
     {
+        Task<AddressDTO> GetByInstitutionId(int institutionId);
     }
 }

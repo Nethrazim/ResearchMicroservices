@@ -12,5 +12,10 @@ namespace SO.DataLayer.Institution.Repositories
     public class AddressRepository : GenericRepository<Address, int>, IAddressRepository
     {
         public AddressRepository(DbContext dbContext) : base(dbContext) { }
+
+        public async Task<Address> GetByInstitutionId(int institutionId)
+        {
+            return await Task.FromResult(this._dbContext.Set<Address>().FirstOrDefault(a => a.InstitutionId == institutionId));
+        }
     }
 }

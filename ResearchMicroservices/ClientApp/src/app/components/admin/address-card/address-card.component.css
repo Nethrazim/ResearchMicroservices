@@ -1,0 +1,33 @@
+.address-card {
+  min-width: 250px;
+  max-width: fit-content;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.address-card .details-lbl {
+  font-weight: 400;
+  font-size: 14px;
+  color: darkgray;
+}
+
+.address-card button {
+  border: 0px;
+  padding: 5px;
+  color: white;
+  background-color: #5b6ab1;
+  outline: none;
+}
+
+.address-card .cancelBtn {
+  margin-left: 10px;
+}
+
+.add-grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px 10px;
+  width: fit-content;
+  justify-content: center;
+}
+
