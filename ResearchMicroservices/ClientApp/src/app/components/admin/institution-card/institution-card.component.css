@@ -1,7 +1,12 @@
 .institution-card {
+  min-height: 300px;
   width: 250px;
   margin-top: 20px;
   margin-left: 50px;
+}
+
+.institution-card .card-content {
+  min-height: 150px;
 }
 
 .institution-card .details-lbl{
@@ -20,4 +25,12 @@
 
 .institution-card .cancelBtn{
     margin-left: 10px;
+}
+
+.institution-card .mat-card-actions {
+  height: 50px;
+}
+.institution-card .mat-card-actions button {
+  position: relative;
+  top: 50%;
 }
