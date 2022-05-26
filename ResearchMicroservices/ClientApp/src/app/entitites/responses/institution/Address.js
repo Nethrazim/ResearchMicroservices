@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Institution = void 0;
-var Institution = /** @class */ (function () {
-    function Institution() {
+exports.Address = void 0;
+var Address = /** @class */ (function () {
+    function Address() {
     }
-    return Institution;
+    return Address;
 }());
-exports.Institution = Institution;
-//# sourceMappingURL=Institution.js.map
+exports.Address = Address;
+//# sourceMappingURL=Address.js.map

@@ -1,3 +1,6 @@
+import { Contact } from "../../../components/admin/admin-manage-contacts/admin-manage-contacts.component";
+import { Address } from "./Address";
+
 export class Institution {
   Id: number;
   Name: string;
@@ -5,4 +8,6 @@ export class Institution {
   IsActive: boolean;
   CreatedDate: string;
   UpdatedDate: string;
+  Contact: Contact;
+  Address: Address;
 }

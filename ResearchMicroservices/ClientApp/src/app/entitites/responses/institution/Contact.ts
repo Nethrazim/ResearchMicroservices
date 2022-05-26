@@ -2,10 +2,10 @@ import { Institution } from "./Institution";
 
 export class Address {
   InstitutionId: number;
-  Address1: string;
-  Address2: string;
-  City: string;
-  State: string;
-  Zip: string;
+  FirstName: string;
+  MiddleName: string;
+  LastName: string;
+  Email: string;
+  Phone: string;
   Institution: Institution;
 }

@@ -12,6 +12,7 @@ import { EntityResponse } from '../entitites/EntityResponse';
 import { Institution } from '../entitites/responses/institution/Institution';
 import { ValueResponse } from '../entitites/ValueResponse';
 import { Address } from '../entitites/responses/institution/Address';
+import { Contact } from '../components/admin/admin-manage-contacts/admin-manage-contacts.component';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +91,15 @@ export class InstitutionClientService {
     };
 
     return this.HttpClient.get<EntityResponse<Address>>(this.Url + '/address/getByInstitutionId?InstitutionId=' + institutionId, httpOptions);
+  }
+
+  getContactByInstitutionId(institutionId: number): Observable<EntityResponse<Contact>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.get<EntityResponse<Contact>>(this.Url + '/contact/getByInstitutionId?InstitutionId=' + institutionId, httpOptions);
   }
 }
