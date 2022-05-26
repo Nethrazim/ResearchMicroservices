@@ -12,5 +12,10 @@ namespace SO.DataLayer.Institution.Repositories
     public class ContactRepository : GenericRepository<Contact, int>, IContactRepository
     {
         public ContactRepository(DbContext dbContext) : base(dbContext) { }
+
+        public async Task<Contact> GetByInstitutionId(int institutionId)
+        {
+            return await Task.FromResult(this._dbContext.Set<Contact>().FirstOrDefault(a => a.InstitutionId == institutionId));
+        }
     }
 }

@@ -41,10 +41,12 @@ namespace SO.API.Institution
             services.AddScoped<IInstitutionRepository, InstitutionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
 
             services.AddScoped<IInstitutionService, InstitutionService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IContactService, ContactService>();
 
 
             services.AddScoped<UserChangedConsumer>();

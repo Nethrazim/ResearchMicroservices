@@ -10,5 +10,6 @@ namespace SO.DataLayer.Institution.Repositories
 {
     public interface IContactRepository : IGenericRepository<Contact, int>
     {
+        Task<Contact> GetByInstitutionId(int institutionId);
     }
 }

@@ -15,22 +15,25 @@ namespace SO.API.Institution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class InstitutionController : ControllerBase
     {
         private readonly ILogger<InstitutionController> _logger;
         private IInstitutionService InstitutionService { get; }
         private IAddressService AddressService { get; }
+        private IContactService ContactService { get; }
+
         private IMapper Mapper;
 
         public InstitutionController(IInstitutionService institutionService, 
             IAddressService addressService,
+            IContactService contactService,
             IMapper mapper, ILogger<InstitutionController> logger)
         {
             _logger = logger;
             Mapper = mapper;
             InstitutionService = institutionService;
             AddressService = addressService;
+            ContactService = contactService;
         }
 
 
@@ -109,11 +112,23 @@ namespace SO.API.Institution.Controllers
         [HttpGet]
         [Route("address/getByInstitutionId")]
         [Authorize(Roles = "Admin")]
-        public async Task<GetAddressByInstitutionResponse> GetAddressByInstitutionId([FromQuery] GetAddressByInstitutionIdRequest request)
+        public async Task<GetAddressByInstitutionIdResponse> GetAddressByInstitutionId([FromQuery] GetAddressByInstitutionIdRequest request)
         {
-            GetAddressByInstitutionResponse response = new GetAddressByInstitutionResponse()
+            GetAddressByInstitutionIdResponse response = new GetAddressByInstitutionIdResponse()
             {
                 Entity = await AddressService.GetByInstitutionId(request.InstitutionId)
+            };
+            return response;
+        }
+
+        [HttpGet]
+        [Route("contact/getByInstitutionId")]
+        [Authorize(Roles = "Admin")]
+        public async Task<GetContactByInstitutionIdResponse> GetContactByInstitutionId([FromQuery] GetContactByInstitutionIdRequest request)
+        {
+            GetContactByInstitutionIdResponse response = new GetContactByInstitutionIdResponse()
+            {
+                Entity = await ContactService.GetByInstitutionId(request.InstitutionId)
             };
             return response;
         }

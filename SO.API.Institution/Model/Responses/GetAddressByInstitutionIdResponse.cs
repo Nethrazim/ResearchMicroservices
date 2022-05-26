@@ -3,7 +3,7 @@ using SO.BusinessLayer.Institution.Entities.DTOs;
 
 namespace SO.API.Institution.Model.Responses
 {
-    public class GetAddressByInstitutionResponse : EntityResponse<AddressDTO> 
+    public class GetAddressByInstitutionIdResponse : EntityResponse<AddressDTO> 
     {
     }
 }
