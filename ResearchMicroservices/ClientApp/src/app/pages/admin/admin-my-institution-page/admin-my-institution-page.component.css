@@ -1,7 +1,9 @@
 .ins-grid-constainer {
+  padding-top: 50px;
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 50px 50px;
   width: fit-content;
   justify-content: center;
 }
+

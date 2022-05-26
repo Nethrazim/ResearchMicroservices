@@ -1,51 +1,56 @@
-<mat-card class="contact-card">
-  <mat-card-header>
-    <div>
-      <mat-card-subtitle></mat-card-subtitle>
-    </div>
-  </mat-card-header>
-  <mat-card-subtitle><i class="bi bi-person-square" style="font-size:26px;"></i>Contact</mat-card-subtitle>
-  <mat-card-content>
-  </mat-card-content>
-  <div class="ctt-grid-container card-content">
-    <div>
-      <span class="details-lbl">Address1</span>
-      <br />
-      <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address1}}</span>
-      <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address1" />
-    </div>
-    <div>
-      <span class="details-lbl">Address2</span>
-      <br />
-      <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address2}}</span>
-      <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address2" />
-    </div>
-    <div>
-      <span class="details-lbl">City</span>
-      <br />
-      <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{city}}</span>
-      <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="city" />
-    </div>
-    <div>
-      <span class="details-lbl">State</span>
-      <br />
-      <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{state}}</span>
-      <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="state" />
-    </div>
-    <div>
-      <span class="details-lbl">Zip Code</span>
-      <br />
-      <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{zip}}</span>
-      <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="zip" />
-    </div>
+<div>
+  <div class="center">
+    <h4>Contact Details</h4>
   </div>
-  <mat-card-actions>
-    <mat-divider inset></mat-divider>
-    <button *ngIf="!isUpdatingAddress && hasAddress()" (click)="setUpdateAddressForm(true)" mat-button>EDIT</button>
-    <button *ngIf="!hasAddress() && !isCreatingAddress" (click)="setCreateAddressForm(true)">ADD</button>
-    <button *ngIf="isCreatingAddress" matt-button (click)="createAddress()">Create</button>
-    <button *ngIf="isUpdatingAddress" matt-button (click)="updateAddress()">Update</button>
-    <button *ngIf="isCreatingAddress" class="cancelBtn" matt-button (click)="setCreateAddressForm(false)">Cancel</button>
-    <button *ngIf="isUpdatingAddress" class="cancelBtn" matt-button (click)="setUpdateAddressForm(false)">Cancel</button>
-  </mat-card-actions>
-</mat-card>
+  <mat-card class="contact-card">
+    <mat-card-header>
+      <div>
+        <mat-card-subtitle></mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-subtitle><i class="bi bi-person-square" style="font-size:26px;"></i>Contact</mat-card-subtitle>
+    <mat-card-content>
+    </mat-card-content>
+    <div class="ctt-grid-container card-content">
+      <div>
+        <span class="details-lbl">Address1</span>
+        <br />
+        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address1}}</span>
+        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address1" />
+      </div>
+      <div>
+        <span class="details-lbl">Address2</span>
+        <br />
+        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address2}}</span>
+        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address2" />
+      </div>
+      <div>
+        <span class="details-lbl">City</span>
+        <br />
+        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{city}}</span>
+        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="city" />
+      </div>
+      <div>
+        <span class="details-lbl">State</span>
+        <br />
+        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{state}}</span>
+        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="state" />
+      </div>
+      <div>
+        <span class="details-lbl">Zip Code</span>
+        <br />
+        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{zip}}</span>
+        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="zip" />
+      </div>
+    </div>
+    <mat-card-actions>
+      <mat-divider inset></mat-divider>
+      <button *ngIf="!isUpdatingAddress && hasAddress()" (click)="setUpdateAddressForm(true)" mat-button>EDIT</button>
+      <button *ngIf="!hasAddress() && !isCreatingAddress" (click)="setCreateAddressForm(true)">ADD</button>
+      <button *ngIf="isCreatingAddress" matt-button (click)="createAddress()">Create</button>
+      <button *ngIf="isUpdatingAddress" matt-button (click)="updateAddress()">Update</button>
+      <button *ngIf="isCreatingAddress" class="cancelBtn" matt-button (click)="setCreateAddressForm(false)">Cancel</button>
+      <button *ngIf="isUpdatingAddress" class="cancelBtn" matt-button (click)="setUpdateAddressForm(false)">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
