@@ -144,5 +144,18 @@ namespace SO.API.Institution.Controllers
             };
             return response;
         }
+
+        [HttpPut]
+        [Route("contact/update")]
+        [Authorize(Roles = "Admin")]
+        public async Task<UpdateContactResponse> UpdateContact([FromBody] UpdateContactRequest request)
+        {
+            UpdateContactResponse response = new UpdateContactResponse()
+            {
+                Entity = await ContactService.UpdateAsync(Mapper.Map<ContactDTO>(request)) 
+            };
+
+            return response;
+        }
     }
 }
