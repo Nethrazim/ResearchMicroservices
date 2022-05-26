@@ -132,5 +132,17 @@ namespace SO.API.Institution.Controllers
             };
             return response;
         }
+
+        [HttpPost]
+        [Route("contact/create")]
+        [Authorize(Roles = "Admin")]
+        public async Task<CreateContactResponse> CreateContact([FromBody] CreateContactRequest request)
+        {
+            CreateContactResponse response = new CreateContactResponse()
+            {
+                Entity = await ContactService.CreateAsync(Mapper.Map<ContactDTO>(request))
+            };
+            return response;
+        }
     }
 }

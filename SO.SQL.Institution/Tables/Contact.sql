@@ -2,7 +2,7 @@
 (
 	[InstitutionId] INT NOT NULL PRIMARY KEY,
 	[FirstName] VARCHAR(255) NOT NULL,
-	[MiddleName] VARCHAR(255) NOT NULL,
+	[MiddleName] VARCHAR(255) NULL,
 	[LastName] VARCHAR(255) NOT NULL,
 	[Email] VARCHAR(255) NOT NULL,
 	[Phone] VARCHAR(15) NOT NULL,

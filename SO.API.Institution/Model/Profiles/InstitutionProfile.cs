@@ -10,6 +10,7 @@ namespace SO.API.Institution.Model.Profiles
         {
             CreateMap<CreateAddressRequest, AddressDTO>();
             CreateMap<UpdateAddressRequest, AddressDTO>();
+            CreateMap<CreateContactRequest, ContactDTO>();
         }
     }
 }
