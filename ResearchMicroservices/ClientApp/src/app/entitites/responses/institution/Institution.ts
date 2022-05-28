@@ -1,5 +1,5 @@
-import { Contact } from "../../../components/admin/admin-manage-contacts/admin-manage-contacts.component";
 import { Address } from "./Address";
+import { Contact } from "./Contact";
 
 export class Institution {
   Id: number;
