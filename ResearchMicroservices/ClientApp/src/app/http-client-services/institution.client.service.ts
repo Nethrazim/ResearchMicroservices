@@ -12,7 +12,7 @@ import { EntityResponse } from '../entitites/EntityResponse';
 import { Institution } from '../entitites/responses/institution/Institution';
 import { ValueResponse } from '../entitites/ValueResponse';
 import { Address } from '../entitites/responses/institution/Address';
-import { Contact } from '../components/admin/admin-manage-contacts/admin-manage-contacts.component';
+import { Contact } from '../entitites/responses/institution/Contact';
 
 @Injectable({
   providedIn: 'root'
@@ -101,5 +101,25 @@ export class InstitutionClientService {
     };
 
     return this.HttpClient.get<EntityResponse<Contact>>(this.Url + '/contact/getByInstitutionId?InstitutionId=' + institutionId, httpOptions);
+  }
+
+  createContact(institutionId: number, firstName: string, middleName: string, lastName: string, email: string, phone: string): Observable<EntityResponse<Contact>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.post<EntityResponse<Contact>>(this.Url + '/contact/create', { InstitutionId: institutionId, FirstName: firstName, MiddleName: middleName, LastName: lastName, Email: email, Phone: phone }, httpOptions);
+  }
+
+  updateContact(institutionId: number, firstName: string, middleName: string, lastName: string, email: string, phone: string): Observable<EntityResponse<Contact>> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.store.Credentials.TokenValue}`
+      })
+    };
+
+    return this.HttpClient.put<EntityResponse<Contact>>(this.Url + '/contact/update', { InstitutionId: institutionId, FirstName: firstName, MiddleName: middleName, LastName: lastName, Email: email, Phone: phone }, httpOptions);
   }
 }

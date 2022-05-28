@@ -13,44 +13,44 @@
     </mat-card-content>
     <div class="ctt-grid-container card-content">
       <div>
-        <span class="details-lbl">Address1</span>
+        <span class="details-lbl">First Name</span>
         <br />
-        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address1}}</span>
-        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address1" />
+        <span *ngIf="!isCreatingContact && !isUpdatingContact" class="value-lbl">{{firstName}}</span>
+        <input *ngIf="isCreatingContact || isUpdatingContact" class="" [(ngModel)]="firstName" />
       </div>
       <div>
-        <span class="details-lbl">Address2</span>
+        <span class="details-lbl">Middle Name</span>
         <br />
-        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{address2}}</span>
-        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="address2" />
+        <span *ngIf="!isCreatingContact && !isUpdatingContact" class="value-lbl">{{middleName}}</span>
+        <input *ngIf="isCreatingContact || isUpdatingContact" class="" [(ngModel)]="middleName" />
       </div>
       <div>
         <span class="details-lbl">City</span>
         <br />
-        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{city}}</span>
-        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="city" />
+        <span *ngIf="!isCreatingContact && !isUpdatingContact" class="value-lbl">{{lastName}}</span>
+        <input *ngIf="isCreatingContact || isUpdatingContact" class="" [(ngModel)]="lastName" />
       </div>
       <div>
-        <span class="details-lbl">State</span>
+        <span class="details-lbl">Email</span>
         <br />
-        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{state}}</span>
-        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="state" />
+        <span *ngIf="!isCreatingContact && !isUpdatingContact" class="value-lbl">{{email}}</span>
+        <input *ngIf="isCreatingContact || isUpdatingContact" class="" [(ngModel)]="email" />
       </div>
       <div>
-        <span class="details-lbl">Zip Code</span>
+        <span class="details-lbl">Phone</span>
         <br />
-        <span *ngIf="!isCreatingAddress && !isUpdatingAddress" class="value-lbl">{{zip}}</span>
-        <input *ngIf="isCreatingAddress || isUpdatingAddress" class="" [(ngModel)]="zip" />
+        <span *ngIf="!isCreatingContact && !isUpdatingContact" class="value-lbl">{{phone}}</span>
+        <input *ngIf="isCreatingContact || isUpdatingContact" class="" [(ngModel)]="phone" />
       </div>
     </div>
     <mat-card-actions>
       <mat-divider inset></mat-divider>
-      <button *ngIf="!isUpdatingAddress && hasAddress()" (click)="setUpdateAddressForm(true)" mat-button>EDIT</button>
-      <button *ngIf="!hasAddress() && !isCreatingAddress" (click)="setCreateAddressForm(true)">ADD</button>
-      <button *ngIf="isCreatingAddress" matt-button (click)="createAddress()">Create</button>
-      <button *ngIf="isUpdatingAddress" matt-button (click)="updateAddress()">Update</button>
-      <button *ngIf="isCreatingAddress" class="cancelBtn" matt-button (click)="setCreateAddressForm(false)">Cancel</button>
-      <button *ngIf="isUpdatingAddress" class="cancelBtn" matt-button (click)="setUpdateAddressForm(false)">Cancel</button>
+      <button *ngIf="!isUpdatingContact && hasContact()" (click)="setUpdateContactForm(true)" mat-button>EDIT</button>
+      <button *ngIf="!hasContact() && !isCreatingContact" (click)="setCreateContactForm(true)">ADD</button>
+      <button *ngIf="isCreatingContact" matt-button (click)="createContact()">Create</button>
+      <button *ngIf="isUpdatingContact" matt-button (click)="updateContact()">Update</button>
+      <button *ngIf="isCreatingContact" class="cancelBtn" matt-button (click)="setCreateContactsForm(false)">Cancel</button>
+      <button *ngIf="isUpdatingContact" class="cancelBtn" matt-button (click)="setUpdateContactForm(false)">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </div>

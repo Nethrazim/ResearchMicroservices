@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseResponse } from '../../../entitites/BaseResponse';
 import { Address } from '../../../entitites/responses/institution/Address';
+import { Contact } from '../../../entitites/responses/institution/Contact';
 import { Institution } from '../../../entitites/responses/institution/Institution';
 import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
 import { ApplicationStoreService } from '../../../services/application.store.service';
@@ -12,18 +13,18 @@ import { ApplicationStoreService } from '../../../services/application.store.ser
 })
 export class ContactCardComponent implements OnInit {
   private defaultValue: string = '----------------------';
-  public isCreatingAddress: boolean = false;
-  public isUpdatingAddress: boolean = false;
+  public isCreatingContact: boolean = false;
+  public isUpdatingContact: boolean = false;
 
-  private address: Address;
+  private contact: Contact;
   private institution: Institution;
   constructor(private httpClient: InstitutionClientService, private store: ApplicationStoreService) { }
 
-  public address1: string = this.defaultValue;
-  public address2: string = this.defaultValue;
-  public city: string = this.defaultValue;
-  public zip: string = this.defaultValue;
-  public state: string = this.defaultValue;
+  public firstName: string = this.defaultValue;
+  public lastName: string = this.defaultValue;
+  public middleName: string = this.defaultValue;
+  public email: string = this.defaultValue;
+  public phone: string = this.defaultValue;
 
 
 
@@ -32,21 +33,21 @@ export class ContactCardComponent implements OnInit {
 
   }
 
-  hasAddress() {
-    if (this.address != null)
+  hasContact() {
+    if (this.contact != null)
       return true;
     else
       return false;
   }
 
-  setCreateAddressForm(value: boolean) {
+  setCreateContactForm(value: boolean) {
     this.getInstitution();
     if (this.institution) {
-      this.isCreatingAddress = value;
+      this.isCreatingContact = value;
       if (value == false)
-        this.address1 = this.address2 = this.city = this.zip = this.state = this.defaultValue;
+        this.firstName = this.middleName = this.lastName = this.email = this.phone = this.defaultValue;
       else
-        this.address1 = this.address2 = this.city = this.zip = this.state = "";
+        this.firstName = this.middleName = this.lastName = this.email = this.phone = "";
     }
     else {
       alert("No institution registered");
@@ -54,74 +55,74 @@ export class ContactCardComponent implements OnInit {
 
   }
 
-  setUpdateAddressForm(value: boolean) {
-    this.isUpdatingAddress = value;
-    this.address1 = this.address.Address1;
-    this.address2 = this.address.Address2;
-    this.city = this.address.City;
-    this.zip = this.address.Zip;
-    this.state = this.address.State;
+  setUpdateContactForm(value: boolean) {
+    this.isUpdatingContact = value;
+    this.firstName = this.contact.FirstName;
+    this.middleName = this.contact.MiddleName;
+    this.email = this.contact.Email;
+    this.phone = this.contact.Phone;
   }
 
 
-  createAddress() {
-    this.isCreatingAddress = false;
-    this.httpClient.createAddress(
+  createContact() {
+    this.isCreatingContact = false;
+    this.httpClient.createContact(
       this.institution.Id,
-      this.address1,
-      this.address2,
-      this.city,
-      this.state,
-      this.zip)
+      this.firstName,
+      this.middleName,
+      this.lastName,
+      this.email,
+      this.phone)
       .subscribe(response => {
         if (response.HasError) {
           alert(response.Message);
           //todo display error somewhere
         }
         else {
-          this.address = response.Entity;
+          this.contact = response.Entity;
         }
       }, error => {
         alert(error.Message);
       });
   }
 
-  updateAddress() {
-    this.isUpdatingAddress = false;
-    this.httpClient.updateAddress(
+  updateContact() {
+    this.isUpdatingContact = false;
+    this.httpClient.updateContact(
       this.institution.Id,
-      this.address1,
-      this.address2,
-      this.city,
-      this.state,
-      this.zip)
+      this.firstName,
+      this.middleName,
+      this.lastName,
+      this.email,
+      this.phone)
       .subscribe(response => {
         if (response.HasError) {
           alert(response.Message);
           //todo display error somewhere
         }
         else {
-          this.address = response.Entity;
-          this.setAddressFormField();
+          this.contact = response.Entity;
+          this.setContactFormFields();
         }
       }, error => {
         alert(error.Message);
       });
   }
 
-  setAddressFormField() {
-    this.address1 = this.address.Address1;
-    this.address2 = this.address.Address2;
-    this.city = this.address.City;
-    this.state = this.address.State;
-    this.zip = this.address.Zip;
+  setContactFormFields() {
+    this.firstName = this.contact.FirstName;
+    this.middleName = this.contact.MiddleName;
+    this.lastName = this.contact.LastName;
+    this.email = this.contact.Email;
+    this.phone = this.contact.Phone;
   }
-  getAddress() {
-    this.httpClient.getAddressByInstitutionId(this.institution.Id)
+
+  getContact() {
+    this.httpClient.getContactByInstitutionId(this.institution.Id)
       .subscribe(response => {
         if (!response.HasError) {
-          this.address = response.Entity;
-          this.setAddressFormField();
+          this.contact = response.Entity;
+          this.setContactFormFields();
         }
       },
         error => {
@@ -137,7 +138,7 @@ export class ContactCardComponent implements OnInit {
       .subscribe(response => {
         if (!response.HasError) {
           this.institution = response.Entity;
-          this.getAddress();
+          this.getContact();
         }
       },
         error => {

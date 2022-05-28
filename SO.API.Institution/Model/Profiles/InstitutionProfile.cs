@@ -8,9 +8,16 @@ namespace SO.API.Institution.Model.Profiles
     {
         public InstitutionProfile()
         {
-            CreateMap<CreateAddressRequest, AddressDTO>();
-            CreateMap<UpdateAddressRequest, AddressDTO>();
-            CreateMap<CreateContactRequest, ContactDTO>();
+            CreateMap<CreateAddressRequest, AddressDTO>()
+                .ForMember(src => src.Institution, dst => dst.Ignore());
+
+            CreateMap<UpdateAddressRequest, AddressDTO>()
+                .ForMember(src => src.Institution, dst => dst.Ignore());
+
+            CreateMap<CreateContactRequest, ContactDTO>()
+                .ForMember(src => src.Institution, dst => dst.Ignore());
+
+            CreateMap<UpdateContactRequest, ContactDTO>();
         }
     }
 }
