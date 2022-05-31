@@ -21,10 +21,4 @@ namespace SO.BusinessLayer.Entities.Responses
     {
         public T Entity { get; set; }
     }
-
-    public class ValueResponse<T> : BaseResponse<BaseResult>
-    where T : struct
-    {
-        public T Value { get; set; }  
-    }
 }

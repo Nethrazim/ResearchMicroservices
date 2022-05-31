@@ -63,6 +63,18 @@ namespace SO.API.Teachers.Controllers
 
             return response;
         }
+
+        [HttpGet]
+        [Route("teacher/getByInstitutionId")]
+        public async Task<GetTeachersByInstitutionIdResponse> GetTeachersByInstitutionId([FromQuery] GetTeachersByInstitutionIdRequest request)
+        {
+            GetTeachersByInstitutionIdResponse response = new GetTeachersByInstitutionIdResponse()
+            {
+                Entity = await TeachersService.GetTeachersByInstitutionId(request.PageIndex, request.PageSize, request.InstitutionId)
+            };
+
+            return response;
+        }
             
     }
 }
