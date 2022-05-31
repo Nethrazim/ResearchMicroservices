@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SO.BusinessLayer\SO.BusinessLayer.csproj" />
+    <ProjectReference Include="..\SO.DataLayer.Teachers\SO.DataLayer.Teachers.csproj" />
+  </ItemGroup>
+
 </Project>
