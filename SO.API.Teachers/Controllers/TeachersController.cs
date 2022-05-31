@@ -51,5 +51,18 @@ namespace SO.API.Teachers.Controllers
             };
             return response;
         }
+
+        [HttpDelete]
+        [Route("teacher/delete")]
+        public async Task<DeleteTeacherResponse> DeleteTeacherAsync(DeleteTeacherRequest request)
+        {
+            DeleteTeacherResponse response = new DeleteTeacherResponse()
+            {
+                Value = await TeachersService.DeleteAsync(request.Id)
+            };
+
+            return response;
+        }
+            
     }
 }
