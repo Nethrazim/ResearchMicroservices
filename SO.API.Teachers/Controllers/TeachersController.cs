@@ -40,5 +40,16 @@ namespace SO.API.Teachers.Controllers
 
             return response;
         }
+
+        [HttpPut]
+        [Route("teacher/update")]
+        public async Task<UpdateTeacherResponse> UpdateTeacherAsync(UpdateTeacherRequest request)
+        {
+            UpdateTeacherResponse response = new UpdateTeacherResponse()
+            {
+                Entity = await TeachersService.UpdateAsync(Mapper.Map<TeacherDTO>(request))
+            };
+            return response;
+        }
     }
 }

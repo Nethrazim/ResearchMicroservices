@@ -9,6 +9,7 @@ namespace SO.API.Teachers.Model.Profiles
         public TeachersProfile()
         {
             CreateMap<CreateTeacherRequest, TeacherDTO>();
+            CreateMap<UpdateTeacherRequest, TeacherDTO>();
         }
     }
 }

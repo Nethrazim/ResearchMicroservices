@@ -34,6 +34,7 @@ namespace SO.DataLayer.Repositories
         public async Task<List<T>> CreateAsync(List<T> entities)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
+            await SaveChanges();
             return entities;
         }
 
@@ -46,6 +47,7 @@ namespace SO.DataLayer.Repositories
         public async Task<T> UpdateAsync(T entity)
         {
             _dbContext.Set<T>().Update(entity);
+            await SaveChanges();
             return entity;
         }
 
