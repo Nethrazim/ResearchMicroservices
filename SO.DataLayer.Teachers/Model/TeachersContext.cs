@@ -34,8 +34,6 @@ namespace SO.DataLayer.Teachers.Model
         {
             modelBuilder.Entity<Teacher>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasMaxLength(255)

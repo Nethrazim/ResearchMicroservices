@@ -27,6 +27,7 @@ namespace SO.DataLayer.Repositories
         public async Task<T> CreateAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
+            await SaveChanges();
             return entity;
         }
 
