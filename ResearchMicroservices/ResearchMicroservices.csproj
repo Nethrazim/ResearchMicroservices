@@ -79,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\admin\teachers\" />
     <Folder Include="ClientApp\src\app\pages\" />
   </ItemGroup>
 

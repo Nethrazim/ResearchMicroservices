@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseResponse } from '../../../entitites/BaseResponse';
-import { Institution } from '../../../entitites/responses/institution/Institution';
-import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
-import { ApplicationStoreService } from '../../../services/application.store.service';
+import { BaseResponse } from '../../../../entitites/BaseResponse';
+import { Institution } from '../../../../entitites/responses/institution/Institution';
+import { InstitutionClientService } from '../../../../http-client-services/institution.client.service';
+import { ApplicationStoreService } from '../../../../services/application.store.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateInstitutionComponent } from '../create-institution/create-institution.component';
 import { UpdateInstitutionComponent } from '../update-institution/update-institution.component';

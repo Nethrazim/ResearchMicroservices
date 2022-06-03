@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
+import { InstitutionClientService } from '../../../../http-client-services/institution.client.service';
 
 @Component({
   selector: 'app-delete-institution',

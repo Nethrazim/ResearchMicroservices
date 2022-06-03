@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseResponse } from '../../../entitites/BaseResponse';
-import { Address } from '../../../entitites/responses/institution/Address';
-import { Institution } from '../../../entitites/responses/institution/Institution';
-import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
-import { ApplicationStoreService } from '../../../services/application.store.service';
+import { BaseResponse } from '../../../../entitites/BaseResponse';
+import { Address } from '../../../../entitites/responses/institution/Address';
+import { Institution } from '../../../../entitites/responses/institution/Institution';
+import { InstitutionClientService } from '../../../../http-client-services/institution.client.service';
+import { ApplicationStoreService } from '../../../../services/application.store.service';
 
 @Component({
   selector: 'app-address-card',

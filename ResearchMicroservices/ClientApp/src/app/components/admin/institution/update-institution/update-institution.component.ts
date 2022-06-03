@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { InstitutionClientService } from '../../../http-client-services/institution.client.service';
+import { InstitutionClientService } from '../../../../http-client-services/institution.client.service';
 
 @Component({
   selector: 'app-update-institution',
