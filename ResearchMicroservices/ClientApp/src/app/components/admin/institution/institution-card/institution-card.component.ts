@@ -50,6 +50,7 @@ export class InstitutionCardComponent implements OnInit {
         }
         else {
           this.institution = response.Entity;
+          this.store.Institution = response.Entity;
         }
       }, error => {
         alert(error.Message);
@@ -65,6 +66,7 @@ export class InstitutionCardComponent implements OnInit {
         }
         else {
           this.institution = response.Entity;
+          this.store.Institution = response.Entity;
         }
       }, error => {
         alert(error.Message);
@@ -72,18 +74,9 @@ export class InstitutionCardComponent implements OnInit {
   }
 
   getInstitution() {
-    this.httpClient.getByAdminId(this.store.Credentials.SystemUserId)
-      .subscribe(response => {
-        if (!response.HasError) {
-          this.institution = response.Entity;
-        }
-      },
-      error => {
-        let errorResponse = error.error as BaseResponse;
-        if (errorResponse.StatusCode = 404) {
-        }
-      }
-    )
+    if (this.store.Institution) {
+      this.institution = this.store.Institution;
+    }
   }
 
 }

@@ -30,6 +30,7 @@ export class AddressCardComponent implements OnInit {
 
   ngOnInit() {
     this.getInstitution();
+    this.getAddress();
     
   }
 
@@ -118,34 +119,26 @@ export class AddressCardComponent implements OnInit {
     this.zip = this.address.Zip;
   }
   getAddress() {
-    this.httpClient.getAddressByInstitutionId(this.institution.Id)
-      .subscribe(response => {
-        if (!response.HasError) {
-          this.address = response.Entity;
-          this.setAddressFormField();
-        }
-      },
-        error => {
-          let errorResponse = error.error as BaseResponse;
-          if (errorResponse.StatusCode = 404) {
+    if (this.institution) {
+      this.httpClient.getAddressByInstitutionId(this.institution.Id)
+        .subscribe(response => {
+          if (!response.HasError) {
+            this.address = response.Entity;
+            this.setAddressFormField();
           }
-        }
-      )
+        },
+          error => {
+            let errorResponse = error.error as BaseResponse;
+            if (errorResponse.StatusCode = 404) {
+            }
+          }
+        )
+    }
   }
 
   getInstitution() {
-    this.httpClient.getByAdminId(this.store.Credentials.SystemUserId)
-      .subscribe(response => {
-        if (!response.HasError) {
-          this.institution = response.Entity;
-          this.getAddress();
-        }
-      },
-        error => {
-          let errorResponse = error.error as BaseResponse;
-          if (errorResponse.StatusCode = 404) {
-          }
-        }
-      )
+    if (this.store.Institution) {
+      this.institution = this.store.Institution;
+    }
   }
 }

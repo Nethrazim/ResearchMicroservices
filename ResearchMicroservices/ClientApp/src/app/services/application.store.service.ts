@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Institution } from '../entitites/responses/institution/Institution';
 import { Token } from '../entitites/Token';
 
 @Injectable({
@@ -6,6 +7,7 @@ import { Token } from '../entitites/Token';
 })
 export class ApplicationStoreService {
   public Credentials: Token = null;
+  public Institution: Institution = null;
 
   constructor() { }
 

@@ -1,8 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserRoles } from '../../data-reference/user-roles';
+import { BaseResponse } from '../../entitites/BaseResponse';
 import { IdentityClientService } from '../../http-client-services/identity.client.service';
+import { InstitutionClientService } from '../../http-client-services/institution.client.service';
 import { ApplicationStoreService } from '../../services/application.store.service';
 
 @Component({
@@ -16,6 +19,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(private identityClient: IdentityClientService,
+      private institutionClient: InstitutionClientService,
       private store: ApplicationStoreService
     , private router: Router
   )
@@ -53,6 +57,14 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.store.setCredentials(response.Entity);
+        this.institutionClient.getByAdminId(response.Entity.SystemUserId)
+          .subscribe(response => {
+            this.store.Institution = response.Entity;
+          },
+            dataError => {
+              alert(dataError.error.Message);
+            })
+          
         if (UserRoles.Admin == <UserRoles>this.store.Credentials.Role) {
           this.router.navigate(['/admin-home']);
         }
