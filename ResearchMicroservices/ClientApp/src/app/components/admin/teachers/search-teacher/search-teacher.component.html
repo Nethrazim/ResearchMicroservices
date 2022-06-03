@@ -1,1 +1,57 @@
-<p>search-teacher works!</p>
+<div class="search-teacher-comp">
+  <div class="filter-wrapper">
+    <div class="d-flex flex-row">
+      <div>
+        <label>First Name:</label>&nbsp;<input type="text" />
+      </div>
+      <div>
+        <label>Last Name:</label>&nbsp;<input type="text" />
+      </div>
+      <div>
+        <label>Middle Name:</label>&nbsp;<input type="text" />
+      </div>
+      <div>
+        <label>Gender:</label>&nbsp;<input type="text" />
+      </div>
+      <div>
+        <button>SEARCH</button>
+      </div>
+    </div>
+  </div>
+    <!--FILTER-->
+    <!--TABLE WITH CREATE/UPDATE/DELETE TEACHER-->
+    <!--PAGINATION-->
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="teachers" class="mat-elevation-z8">
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="MiddleName">
+        <th mat-header-cell *matHeaderCellDef>Middle Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.MiddleName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef>Gender</th>
+        <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element" class="action-link">
+          <a class="action-btn">Edit</a>|<a class="action-btn">Delete</a>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      (page)="onPageSelected($event)">
+    </mat-paginator>
+  </div>
+</div>

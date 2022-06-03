@@ -34,9 +34,11 @@
     <None Remove="ClientApp\src\app\entitites\EntityResponse.ts" />
     <None Remove="ClientApp\src\app\entitites\Token.ts" />
     <None Remove="ClientApp\src\app\entitites\ValueResponse.ts" />
+    <None Remove="ClientApp\src\app\http-client-services\base.client.service.ts" />
     <None Remove="ClientApp\src\app\http-client-services\identity.client.service.ts" />
     <None Remove="ClientApp\src\app\entitites\BaseResponse.ts" />
     <None Remove="ClientApp\src\app\http-client-services\institution.client.service.ts" />
+    <None Remove="ClientApp\src\app\http-client-services\teacher.client.service.ts" />
     <None Remove="ClientApp\src\app\services\application.store.service.ts" />
     <None Remove="ClientApp\src\app\services\auth.service.ts" />
   </ItemGroup>
@@ -48,6 +50,7 @@
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\CreateInstitutionResponse.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\GetByAdminIdResponse.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\institution\Institution.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\entitites\responses\teacher\Teacher.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\route-guards\admin.loggedin.guard.ts" />
   </ItemGroup>
 
@@ -70,7 +73,13 @@
     <TypeScriptCompile Update="ClientApp\src\app\entitites\ValueResponse.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\http-client-services\base.client.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\http-client-services\institution.client.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\http-client-services\teacher.client.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\route-guards\loggedin.guard.ts">

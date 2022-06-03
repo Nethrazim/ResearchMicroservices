@@ -29,6 +29,7 @@ import { CreateInstitutionComponent } from './components/admin/institution/creat
 import { InstitutionCardComponent } from './components/admin/institution/institution-card/institution-card.component';
 import { AddressCardComponent } from './components/admin/institution/address-card/address-card.component';
 import { ContactCardComponent } from './components/admin/institution/contact-card/contact-card.component';
+import { SearchTeacherComponent } from './components/admin/teachers/search-teacher/search-teacher.component';
 /*PAGES*/
 import { AdminMyInstitutionPageComponent } from './pages/admin/admin-my-institution-page/admin-my-institution-page.component';
 import { AdminTeacherPageComponent } from './pages/admin/admin-teacher-page/admin-teacher-page.component';
@@ -50,6 +51,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     DeleteInstitutionComponent,
     InstitutionCardComponent,
     AddressCardComponent,
-    ContactCardComponent
+    ContactCardComponent,
+    SearchTeacherComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -93,6 +96,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCardModule,
     MatDividerModule,
     MatTabsModule,
+    MatPaginatorModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -107,7 +111,7 @@ import { MatTabsModule } from '@angular/material/tabs';
       { path: 'admin/classes', component: AdminClassPageComponent, canActivate: [IsAdminLoggedInGuard] },
       { path: 'admin/grades', component: AdminGradesPageComponent, canActivate: [IsAdminLoggedInGuard] },
       { path: 'admin/courses', component: AdminCoursesPageComponent, canActivate: [IsAdminLoggedInGuard] },
-      { path: 'development', component: AdminMyInstitutionPageComponent }
+      { path: 'development', component: SearchTeacherComponent }
     ]),
     BrowserAnimationsModule
   ],

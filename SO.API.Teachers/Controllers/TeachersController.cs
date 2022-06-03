@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace SO.API.Teachers.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TeachersController : ControllerBase
     {
         private readonly IMapper Mapper;
