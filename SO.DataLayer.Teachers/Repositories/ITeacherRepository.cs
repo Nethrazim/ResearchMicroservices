@@ -10,6 +10,6 @@ namespace SO.DataLayer.Teachers.Repositories
 {
     public interface ITeacherRepository : IGenericRepository<Teacher,int>
     {
-        Task<List<Teacher>> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId);
+        Task<(List<Teacher> teachers, int totalCount)> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId, string firstName, string middleName, string lastName);
     }
 }

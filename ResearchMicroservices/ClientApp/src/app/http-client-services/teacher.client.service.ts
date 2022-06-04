@@ -7,6 +7,8 @@ import { ApplicationStoreService } from '../services/application.store.service';
 import { EntityResponse } from '../entitites/EntityResponse';
 import { ValueResponse } from '../entitites/ValueResponse';
 import { Teacher } from '../entitites/responses/teacher/Teacher';
+import { EntitiesResponse } from '../entitites/EntitiesResponse';
+import { PagedResponse } from '../entitites/PagedResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +70,7 @@ export class TeacherClientService {
     return this.HttpClient.delete<ValueResponse<boolean>>(this.Url + '/teacher/delete', httpOptions);
   }
 
-  getByInstitutionId(institutionId: number, pageIndex: number, pageSize: number): Observable<ValueResponse<boolean>> {
+  getByInstitutionId(institutionId: number, pageIndex: number, pageSize: number, firstName: string, middleName:string, lastName:string): Observable<PagedResponse<Teacher>> {
     var httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.store.Credentials.TokenValue}`
@@ -81,7 +83,19 @@ export class TeacherClientService {
       PageSize: pageSize.toString()
     });
 
-    return this.HttpClient.get<ValueResponse<boolean>>(this.Url + '/teacher/getByInstitutionId?' + params.toString(), httpOptions);
+    if (firstName) {
+      params.set("FirstName", firstName);
+    }
+
+    if (middleName) {
+      params.set("MiddleName", middleName);
+    }
+
+    if (lastName) {
+      params.set("LastName", lastName);
+    }
+
+    return this.HttpClient.get<PagedResponse<Teacher>>(this.Url + '/teacher/getByInstitutionId?' + params.toString(), httpOptions);
   }
 
 }

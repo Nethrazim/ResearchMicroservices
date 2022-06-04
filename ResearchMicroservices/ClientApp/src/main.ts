@@ -24,7 +24,7 @@ const providers = [
   { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
   { provide: 'IDENTITY_URL', useFactory: getIdentityUrl, deps: [] },
   { provide: 'INSTITUTION_URL', useFactory: getInstitutionUrl, deps: [] },
-  { provide: 'TEACHER_ URL', useFactory: getTeacherUrl, deps:[]}
+  { provide: 'TEACHER_URL', useFactory: getTeacherUrl, deps:[]}
 ];
 
 if (environment.production) {

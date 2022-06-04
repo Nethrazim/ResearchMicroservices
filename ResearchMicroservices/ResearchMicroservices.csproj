@@ -32,6 +32,7 @@
     <None Remove="ClientApp\src\app\entitites\AuthenticateResponse.ts" />
     <None Remove="ClientApp\src\app\entitites\EntitiesResponse.ts" />
     <None Remove="ClientApp\src\app\entitites\EntityResponse.ts" />
+    <None Remove="ClientApp\src\app\entitites\PagedResponse.ts" />
     <None Remove="ClientApp\src\app\entitites\Token.ts" />
     <None Remove="ClientApp\src\app\entitites\ValueResponse.ts" />
     <None Remove="ClientApp\src\app\http-client-services\base.client.service.ts" />
@@ -68,6 +69,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\entitites\EntityResponse.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\entitites\PagedResponse.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Update="ClientApp\src\app\entitites\ValueResponse.ts">

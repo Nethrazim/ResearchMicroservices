@@ -10,6 +10,6 @@ namespace SO.BusinessLayer.Teachers.Services
 {
     public interface ITeacherService : IGenericService<TeacherDTO, Teacher, int>
     {
-        Task<List<TeacherDTO>> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId);
+        Task<(List<TeacherDTO> teachers, int totalCount)> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId, string firstName, string middleName, string lastName);
     }
 }

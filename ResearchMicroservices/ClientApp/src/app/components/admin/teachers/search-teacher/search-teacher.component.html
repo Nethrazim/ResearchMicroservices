@@ -2,19 +2,16 @@
   <div class="filter-wrapper">
     <div class="d-flex flex-row">
       <div>
-        <label>First Name:</label>&nbsp;<input type="text" />
+        <label>First Name:</label>&nbsp;<input type="text" [(ngModel)]="firstName" />
       </div>
       <div>
-        <label>Last Name:</label>&nbsp;<input type="text" />
+        <label>Middle Name:</label>&nbsp;<input type="text" [(ngModel)]="middleName"/>
       </div>
       <div>
-        <label>Middle Name:</label>&nbsp;<input type="text" />
+        <label>Last Name:</label>&nbsp;<input type="text" [(ngModel)]="lastName"/>
       </div>
       <div>
-        <label>Gender:</label>&nbsp;<input type="text" />
-      </div>
-      <div>
-        <button>SEARCH</button>
+        <button (click)="onSearch()">SEARCH</button>
       </div>
     </div>
   </div>
@@ -49,8 +46,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator
-      [length]="100"
-      [pageSize]="10"
+      [length]="totalCount"
+      [pageSize]="pageSize"
       (page)="onPageSelected($event)">
     </mat-paginator>
   </div>

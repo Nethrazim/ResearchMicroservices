@@ -68,9 +68,12 @@ namespace SO.API.Teachers.Controllers
         [Route("teacher/getByInstitutionId")]
         public async Task<GetTeachersByInstitutionIdResponse> GetTeachersByInstitutionId([FromQuery] GetTeachersByInstitutionIdRequest request)
         {
+            (List<TeacherDTO> teachers, int totalCount) = await TeachersService.GetTeachersByInstitutionId(request.PageIndex, request.PageSize, request.InstitutionId,request.FirstName, request.MiddleName,request.LastName);
+
             GetTeachersByInstitutionIdResponse response = new GetTeachersByInstitutionIdResponse()
             {
-                Entity = await TeachersService.GetTeachersByInstitutionId(request.PageIndex, request.PageSize, request.InstitutionId)
+                Entity = teachers,
+                TotalCount = totalCount
             };
 
             return response;

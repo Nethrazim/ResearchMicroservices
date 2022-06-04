@@ -14,9 +14,11 @@ namespace SO.BusinessLayer.Teachers.Services
     public class TeacherService : GenericService<ITeacherRepository, TeacherDTO, Teacher, int> , ITeacherService
     {
         public TeacherService(ITeacherRepository repository, IMapper mapper, IConfiguration configuration) : base(repository, configuration, mapper) { }
-        public async Task<List<TeacherDTO>> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId)
+        public async Task<(List<TeacherDTO> teachers, int totalCount)> GetTeachersByInstitutionId(int pageIndex, int pageSize, int institutionId, string firstName, string middleName, string lastName)
         {
-            return Mapper.Map<List<TeacherDTO>>(await Repository.GetTeachersByInstitutionId(pageIndex, pageSize, institutionId));
+            (List<Teacher> teachers, int totalCount) = await Repository.GetTeachersByInstitutionId(pageIndex, pageSize, institutionId,firstName,middleName,lastName);
+
+            return (Mapper.Map<List<TeacherDTO>>(teachers), totalCount);
         }
     }
 }
