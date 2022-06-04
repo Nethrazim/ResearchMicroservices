@@ -4,6 +4,11 @@
 
 }
 
+.search-teacher-comp table
+{
+    width: 100%;
+}
+
 .search-teacher-comp .table-wrapper {
   width: 1200px;
 }
@@ -14,6 +19,7 @@
   padding-left: 10px;
   width: 1100px;
   box-shadow: 0 6px 6px #ccc;
+  width: 1200px;
 }
 
 .search-teacher-comp .filter-wrapper .flex-row div
@@ -26,7 +32,8 @@
 }
 
 .search-teacher-comp .filter-wrapper button {
-      float:right;
+    float:right;
+    margin-right:10px;
 }
 
 .search-teacher-comp .mat-header-cell {

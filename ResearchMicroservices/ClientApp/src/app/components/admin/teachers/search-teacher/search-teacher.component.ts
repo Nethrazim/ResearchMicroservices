@@ -49,4 +49,11 @@ export class SearchTeacherComponent implements OnInit {
   onSearch() {
     this.getTeachers();
   }
+
+  onClearSearch() {
+    this.firstName = null;
+    this.middleName = null;
+    this.lastName = null;
+    this.getTeachers();
+  }
 }
