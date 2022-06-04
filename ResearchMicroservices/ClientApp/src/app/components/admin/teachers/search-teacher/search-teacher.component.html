@@ -39,7 +39,7 @@
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element" class="action-link">
-          <a class="action-btn">Edit</a>|<a class="action-btn">Delete</a>
+          <a class="action-btn">Edit</a>|<a class="action-btn" (click)="onDelete(element.Id)" style="cursor:pointer;">Delete</a>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

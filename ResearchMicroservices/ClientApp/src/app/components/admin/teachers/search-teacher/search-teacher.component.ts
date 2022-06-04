@@ -56,4 +56,14 @@ export class SearchTeacherComponent implements OnInit {
     this.lastName = null;
     this.getTeachers();
   }
+
+  onDelete(id: number) {
+    this.teachersClient.deleteTeacher(id)
+      .subscribe(response => {
+        if (response.Value) {
+          this.getTeachers();
+        }
+      }, error => { })
+  }
+
 }
