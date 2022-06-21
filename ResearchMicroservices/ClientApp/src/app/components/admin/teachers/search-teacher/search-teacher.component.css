@@ -17,9 +17,11 @@
   margin-bottom: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
+  padding-top: 20px;
   width: 1100px;
   box-shadow: 0 6px 6px #ccc;
   width: 1200px;
+  background-color: #fff;
 }
 
 .search-teacher-comp .filter-wrapper .flex-row div

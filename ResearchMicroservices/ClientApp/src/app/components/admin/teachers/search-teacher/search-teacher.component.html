@@ -15,9 +15,9 @@
       </div>
     </div>
   </div>
-    <!--FILTER-->
-    <!--TABLE WITH CREATE/UPDATE/DELETE TEACHER-->
-    <!--PAGINATION-->
+  <div>
+    <button (click)="addTeacher()">ADD</button>
+  </div>
   <div class="table-wrapper">
     <table mat-table [dataSource]="teachers" class="mat-elevation-z8">
       <ng-container matColumnDef="FirstName">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { Teacher } from '../../../../entitites/responses/teacher/Teacher';
 import { TeacherClientService } from '../../../../http-client-services/teacher.client.service';
 import { ApplicationStoreService } from '../../../../services/application.store.service';
@@ -22,10 +23,14 @@ export class SearchTeacherComponent implements OnInit {
   public middleName: string = null;
   public lastName: string = null;
 
-  constructor(private store: ApplicationStoreService, private teachersClient : TeacherClientService) { }
+  constructor(private store: ApplicationStoreService, private teachersClient : TeacherClientService, private router: Router) { }
 
   ngOnInit() {
     this.getTeachers();
+  }
+
+  addTeacher() { 
+    this.router.navigate(['/admin/teachers/add']);
   }
 
   getTeachers() {
