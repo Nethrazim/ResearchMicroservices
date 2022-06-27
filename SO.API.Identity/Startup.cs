@@ -47,7 +47,6 @@ namespace SO.API.Identity
 
             services.AddScoped<DbContext, IdentityContext>();
             services.AddScoped<IUserPublisher, UserPublisher>();
-            services.AddScoped<IEvent2Publisher, Event2Publisher>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             
