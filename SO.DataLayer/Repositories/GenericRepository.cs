@@ -17,10 +17,10 @@ namespace SO.DataLayer.Repositories
             _dbContext = dbContext;
         }
 
-        public T Get(Tkey id)
+        public async Task<T> Get(Tkey id)
         {
-            var entity = _dbContext.Set<T>().Find(id);
-            _dbContext.Entry(entity).State = EntityState.Detached;
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+            //_dbContext.Entry(entity).State = EntityState.Detached;
             return entity;
         }
 

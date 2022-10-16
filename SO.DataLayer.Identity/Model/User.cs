@@ -16,6 +16,7 @@ namespace SO.DataLayer.Identity.Model
         public string Salt { get; set; }
         public int Role { get; set; }
         public bool IsLockedOut { get; set; }
+        public bool? IsPublished { get; set; }
         public Guid SystemUserId { get; set; }
     }
 }

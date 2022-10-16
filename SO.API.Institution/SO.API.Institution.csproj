@@ -15,6 +15,7 @@
     <ProjectReference Include="..\SO.API\SO.API.csproj" />
     <ProjectReference Include="..\SO.BusinessLayer.Institution\SO.BusinessLayer.Institution.csproj" />
     <ProjectReference Include="..\SO.BusinessLayer\SO.BusinessLayer.csproj" />
+    <ProjectReference Include="..\SO.Messaging\SO.Messaging.csproj" />
   </ItemGroup>
 
 

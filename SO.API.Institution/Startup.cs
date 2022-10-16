@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SO.API.Institution.Messaging.Consumers;
 using SO.BusinessLayer.Institution.Services;
-using SO.BusinessLayer.Messaging.Events;
 using SO.DataLayer.Institution.Model;
 using SO.DataLayer.Institution.Repositories;
 using System;
@@ -76,7 +75,6 @@ namespace SO.API.Institution
                 });
 
                 x.AddConsumer<UserChangedConsumer>();
-                x.AddConsumer<EventChangedConsumer>();
             });
         }
 

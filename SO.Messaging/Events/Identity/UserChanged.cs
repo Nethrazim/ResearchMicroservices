@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SO.BusinessLayer.Messaging.Events
+namespace SO.Messaging.Events.Identity
 {
     public class UserChanged : IUserChangedEvent
     {

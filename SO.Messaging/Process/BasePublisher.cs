@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SO.BusinessLayer.Messaging.Publish
+namespace  SO.Messaging.Process
 {
     public class BasePublisher<T> : IBasePublisher<T>
     where T: class

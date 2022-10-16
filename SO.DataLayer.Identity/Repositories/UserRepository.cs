@@ -39,5 +39,9 @@ namespace SO.DataLayer.Identity.Repositories
             return true;
         }
 
+        public async Task<List<User>> GetEventsToPublish()
+        {
+            return await _dbContext.Set<User>().Where(u => u.IsPublished == false).ToListAsync();
+        }
     }
 }

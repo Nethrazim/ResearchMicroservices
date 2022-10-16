@@ -23,7 +23,7 @@ namespace SO.BusinessLayer.Institution.Services
         {
             UserDTO patchedUser = null;
 
-            if (this.Repository.Get(user.Id) != null)
+            if (await this.Repository.Get(user.Id) != null)
             {
                 patchedUser = Mapper.Map<UserDTO>(await this.Repository.UpdateAsync(Mapper.Map<SO.DataLayer.Institution.Model.User>(user)));
             }

@@ -14,6 +14,8 @@ namespace SO.BusinessLayer.Identity.Configurations
         public string ValidAudience { get; set; }
         public bool ValidateIssuer { get; set; }
         public string ValidIssuer { get; set; }
+
+        public PublishEventsConfig PublishEvents { get; set; }
     }
 }
 

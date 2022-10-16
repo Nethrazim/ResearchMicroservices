@@ -27,15 +27,15 @@ namespace SO.BusinessLayer.Services
 
         public async Task<bool> DeleteAsync(TKey id)
         {
-            TEntity entity = Repository.Get(id);
+            TEntity entity = await Repository.Get(id);
             bool result = await Repository.DeleteAsync(entity);
             await Repository.SaveChanges();
             return result;
         }
 
-        public Task<TEntityDTO> GetById(TKey id)
+        public async Task<TEntityDTO> GetById(TKey id)
         {
-            return Task.FromResult(Mapper.Map<TEntityDTO>(Repository.Get(id)));
+            return Mapper.Map<TEntityDTO>(await Repository.Get(id));
         }
 
         public async Task<TEntityDTO> UpdateAsync(TEntityDTO entity)

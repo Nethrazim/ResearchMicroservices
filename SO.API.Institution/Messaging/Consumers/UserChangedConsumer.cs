@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SO.BusinessLayer.Institution.Entities.DTOs;
 using SO.BusinessLayer.Institution.Services;
-using SO.BusinessLayer.Messaging.Events;
+using SO.Messaging.Events.Identity;
 using System.Threading.Tasks;
 
 namespace SO.API.Institution.Messaging.Consumers

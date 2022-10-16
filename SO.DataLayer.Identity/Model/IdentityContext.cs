@@ -45,6 +45,10 @@ namespace SO.DataLayer.Identity.Model
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.IsPublished)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(255);

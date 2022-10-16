@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SO.DataLayer\SO.DataLayer.csproj" />
-    <ProjectReference Include="..\SO.Messaging\SO.Messaging.csproj" />
+    <ProjectReference Include="..\SO.BusinessLayer\SO.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>

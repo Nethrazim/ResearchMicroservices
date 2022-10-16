@@ -20,7 +20,8 @@ using System.Text;
 using AutoMapper;
 using SO.BusinessLayer.Identity.Configurations;
 using MassTransit;
-using SO.BusinessLayer.Messaging.Publish;
+using SO.BusinessLayer.Identity.Services.Processes;
+using SO.BusinessLayer.Identity.Messaging;
 
 namespace SO.API.Identity 
 {
@@ -47,7 +48,9 @@ namespace SO.API.Identity
 
             services.AddScoped<DbContext, IdentityContext>();
             services.AddScoped<IUserPublisher, UserPublisher>();
+            services.AddScoped<IUserChangedPublishProcess, UserChangedPublishProcess>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserEventRepository, UserEventRepository>();
             services.AddScoped<IUserService, UserService>();
             
 
@@ -74,10 +77,11 @@ namespace SO.API.Identity
                     config.Host("amqp://guest:guest@localhost:5672");
                 });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IUserChangedPublishProcess userChangedPublishProcess)
         {
 
             AddErrorMiddleware(app);
@@ -98,6 +102,15 @@ namespace SO.API.Identity
             });
 
             ConfigureBaseServices(app);
+            ConfigurePublishEventsProcesses(userChangedPublishProcess);
+        }
+
+        private async void ConfigurePublishEventsProcesses(IUserChangedPublishProcess userChangedPublishProcess)
+        {
+            if (IdentityConfiguration.PublishEvents.AutoStartPublishUserChangedEvents)
+            {
+                await userChangedPublishProcess.StartProcess();
+            }
         }
     }
 }

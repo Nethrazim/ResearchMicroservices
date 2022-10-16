@@ -1,14 +1,14 @@
 ﻿using MassTransit;
-using SO.BusinessLayer.Messaging.Events;
+using SO.Messaging.Events.Identity;
+using SO.Messaging.Process;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SO.BusinessLayer.Messaging.Publish
+namespace SO.BusinessLayer.Identity.Messaging
 {
     public class UserPublisher : BasePublisher<IUserChangedEvent>, IUserPublisher
     {
-        private readonly IPublishEndpoint PublishEndpoint;
         public UserPublisher(IPublishEndpoint publishEndpoint) : base(publishEndpoint)
         {
         }

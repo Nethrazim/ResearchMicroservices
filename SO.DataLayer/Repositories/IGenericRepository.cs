@@ -9,7 +9,7 @@ namespace SO.DataLayer.Repositories
     public interface IGenericRepository<T,TKey> where T : class
     {
         DbContext _dbContext { get; set; }
-        T Get(TKey id);
+        Task<T> Get(TKey id);
         Task<T> CreateAsync(T entity);
         Task<List<T>> CreateAsync(List<T> entities);
         Task<bool> DeleteAsync(T id);
